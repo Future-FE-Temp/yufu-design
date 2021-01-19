@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "@yufud/core": "0.0.0",
+    "@yufud/icons": "0.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   }

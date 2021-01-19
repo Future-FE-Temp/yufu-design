@@ -88,12 +88,12 @@ export default () => {
     case 'umd':
       return [{
         input: entryFile,
-        output: {...umdOutput, file: 'dist/umd/yufud.development.js'},
+        output: {...umdOutput, file: 'dist/umd/rollup-ui.development.js'},
         external,
         plugins: [styles(stylePluginConfig), ...commonPlugins]
       }, {
         input: entryFile,
-        output: {...umdOutput, file: 'dist/umd/yufud.production.min.js', plugins: [terser()]},
+        output: {...umdOutput, file: 'dist/umd/rollup-ui.production.min.js', plugins: [terser()]},
         external,
         plugins: [styles({...stylePluginConfig, minimize: true}), ...commonPlugins]
       }];

@@ -6,7 +6,7 @@ export default {
   /**
    * 排除哪些文件
    */
-  ignore: ["README.md", "../core/node_modules"],
+  ignore: ["README.md", "../core/node_modules", "../icons/node_modules"],
   /**
    * 网站的标题，默认是 package.json name
    */
@@ -33,7 +33,7 @@ export default {
    */
   port: 3000,
   docgenConfig: {
-    searchPatterns: ["../core/**/*"],
+    searchPatterns: ["../core/**/*", "../icons/**/*"],
   },
   filterComponents: (files) =>
     files.filter((filepath) => /\/[A-Z]\w*\.(js|jsx|ts|tsx)$/.test(filepath)),
