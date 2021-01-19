@@ -14,8 +14,9 @@ export interface ButtonProps {
    */
   onClick?: () => void;
 }
+// 类似 const Button: React.FC<ButtonProps> = (props: ButtonProps) => {} 这种设置 React.FC 会导致 docz 识别不出 props
 
-const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
+const Button = (props: ButtonProps) => {
   const { className, children, type, onClick, size } = props;
   let color = '#333333';
   if (type === 'primary') {
