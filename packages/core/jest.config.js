@@ -1,5 +1,9 @@
 module.exports = {
-  roots: ['<rootDir>/src'],
+  /**
+   * roots: Array<string>
+   * A list of paths to directories that Jest should use to search for files in.
+   */
+  roots: ['<rootDir>/src', '<rootDir>/tests/'],
   collectCoverageFrom: ['src/components/**', '!**/node_modules/**', '!src/**/*.d.ts'],
   /**
    * react-app-polyfill/jsdom: fetch()的polyfill实现，内部调用了 whatwg-fetch
@@ -16,6 +20,9 @@ module.exports = {
     '^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|less|json)$)': '<rootDir>/jest/fileTransform.js',
   },
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$'],
+  moduleNameMapper: {
+    '^tests/(.*)$': '<rootDir>/tests/$1',
+  },
   watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
   resetMocks: true,
   verbose: true,
