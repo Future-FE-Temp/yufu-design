@@ -2,6 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+const baseStyle = {
+  display: 'inline-block',
+  lineHeight: 0
+};
+
 const BaseIcon = props => {
   const {
     className,
@@ -14,7 +19,9 @@ const BaseIcon = props => {
     "aria-hidden": "true",
     role: "img",
     className: className,
-    style: style,
+    style: { ...baseStyle,
+      ...style
+    },
     onClick: onClick
   }, /*#__PURE__*/React.createElement(Component, {
     width: "1em",

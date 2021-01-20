@@ -1,4 +1,7 @@
-import { createElement } from 'react';
+const baseStyle = {
+  display: 'inline-block',
+  lineHeight: 0
+};
 
 const BaseIcon = props => {
   const {
@@ -8,12 +11,15 @@ const BaseIcon = props => {
     component: Component = 'svg',
     children
   } = props;
-  return /*#__PURE__*/createElement("span", {
-    role: "presentation",
+  return /*#__PURE__*/React.createElement("span", {
+    "aria-hidden": "true",
+    role: "img",
     className: className,
-    style: style,
+    style: { ...baseStyle,
+      ...style
+    },
     onClick: onClick
-  }, /*#__PURE__*/createElement(Component, {
+  }, /*#__PURE__*/React.createElement(Component, {
     width: "1em",
     height: "1em",
     fill: "currentColor",

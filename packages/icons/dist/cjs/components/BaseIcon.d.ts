@@ -8,7 +8,7 @@ export interface IconProps {
     onClick?: () => void;
 }
 interface BaseIconProps extends IconProps {
-    component: any;
+    component: React.ElementType;
     children?: React.ReactNode;
 }
 declare const BaseIcon: (props: BaseIconProps) => JSX.Element;
