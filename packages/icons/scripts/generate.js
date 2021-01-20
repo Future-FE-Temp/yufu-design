@@ -62,7 +62,7 @@ function readFileDir(fileDirPath) {
             },
           );
         });
-        appendIndexTSX(FileName);
+        appendIndexTS(FileName);
       }
     });
   });
@@ -76,10 +76,10 @@ function SVGToReact(data) {
   return svgData[0].replace(/<svg([\s\S]*?)>/, '');
 }
 
-function appendIndexTSX(fileName) {
+function appendIndexTS(fileName) {
   if (currentTSXFiles.includes(`${fileName}.tsx`)) return;
   fs.appendFile(
-    path.join(__dirname, '../src/index.tsx'),
+    path.join(__dirname, '../src/index.ts'),
     indexExport({ svgName: fileName }),
     () => {},
   );
