@@ -4,6 +4,7 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.RollupUI = {}));
 }(this, (function (exports) { 'use strict';
 
+  // 类似 const Button: React.FC<ButtonProps> = (props: ButtonProps) => {} 这种设置 React.FC 会导致 docz 识别不出 props
   var Button = function Button(props) {
     var className = props.className,
         children = props.children,

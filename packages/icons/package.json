@@ -33,7 +33,8 @@
     "lint-staged": "lint-staged",
     "check:tsc": "tsc",
     "lint-staged:js": "cross-env ESLINT_ENV=commit eslint --fix --ext .js,.jsx",
-    "lint-staged:ts": "cross-env ESLINT_ENV=commit eslint --fix --ext .ts,.tsx"
+    "lint-staged:ts": "cross-env ESLINT_ENV=commit eslint --fix --ext .ts,.tsx",
+    "generate": "node ./scripts/generate.js"
   },
   "bugs": {
     "url": "https://github.com/Future-FE-Temp/yufu-design/issues"

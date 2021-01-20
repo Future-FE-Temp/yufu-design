@@ -68,7 +68,6 @@
   },
   "include": [
     // 指定需要编译的文件
-    "typings",
     "src",
   ],
   "exclude": [
@@ -76,5 +75,6 @@
     "node_modules",
     "dist/**/*",
     "**/*.spec.ts",
+    "scripts/*"
   ]
 }

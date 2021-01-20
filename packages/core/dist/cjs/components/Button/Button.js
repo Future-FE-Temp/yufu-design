@@ -2,6 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+// 类似 const Button: React.FC<ButtonProps> = (props: ButtonProps) => {} 这种设置 React.FC 会导致 docz 识别不出 props
 const Button = props => {
   const {
     className,

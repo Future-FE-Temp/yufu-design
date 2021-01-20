@@ -14,5 +14,11 @@ export interface ButtonProps {
      */
     onClick?: () => void;
 }
-declare const Button: React.FC<ButtonProps>;
+declare const Button: {
+    (props: ButtonProps): JSX.Element;
+    defaultProps: {
+        type: string;
+        size: string;
+    };
+};
 export default Button;

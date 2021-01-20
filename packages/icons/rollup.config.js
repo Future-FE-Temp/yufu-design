@@ -20,9 +20,9 @@ const globals = {react: 'React', 'react-dom': 'ReactDOM'};
 const externalPkg = ['react', 'react-dom', 'lodash'];
 BABEL_ENV !== 'umd' && externalPkg.push('@babel/runtime');
 const external = id => externalPkg.some(e => id.indexOf(e) === 0);
-const componentDir = 'src/components';
-const cModuleNames = fs.readdirSync(path.resolve(componentDir));
-const componentEntryFiles = cModuleNames.map((name) => /^[A-Z]\w*/.test(name) ? `${componentDir}/${name}/index.tsx` : undefined).filter(n => !!n);
+const iconsDir = 'src/icons';
+const cModuleNames = fs.readdirSync(path.resolve(iconsDir));
+const componentEntryFiles = cModuleNames.map((name) => /^[A-Z]\w*/.test(name) ? `${iconsDir}/${name}` : undefined).filter(n => !!n);
 
 const commonPlugins = [
   image(),
@@ -35,11 +35,11 @@ const commonPlugins = [
     skipPreflightCheck: true
   }),
   // 全局变量替换
-  replace({
-    exclude: 'node_modules/**',
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-    'process.env.BABEL_ENV': JSON.stringify(BABEL_ENV || 'umd'),
-  }),
+  // replace({
+  //   exclude: 'node_modules/**',
+  //   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+  //   'process.env.BABEL_ENV': JSON.stringify(BABEL_ENV || 'umd'),
+  // }),
   commonjs(),
 ];
 const stylePluginConfig = {
@@ -55,7 +55,7 @@ const stylePluginConfig = {
 };
 const umdOutput = { 
   format: 'umd',
-  name: 'RollupUI',
+  name: 'YufudIcon',
   globals,
   assetFileNames: '[name].[ext]'
 };
@@ -64,23 +64,6 @@ const esOutput = {
   preserveModules: true,
   preserveModulesRoot: 'src',
   exports: 'named',
-  assetFileNames: ({name}) => {
-    const {ext, dir, base} = path.parse(name);
-    if (ext !== '.css') return '[name].[ext]';
-    // 规范 style 的输出格式
-    return path.join(dir, 'style', base);
-  },
-}
-const esStylePluginConfig = {
-  ...stylePluginConfig, 
-  sourceMap: true, // 必须开启，否则 rollup-plugin-styles 会有 bug
-  onExtract(data) {
-    // 一下操作用来确保只输出一个 index.css
-    const {css, name, map} = data;
-    const {base} = path.parse(name);
-    if (base !== 'index.css') return false;
-    return true;
-  }
 }
 
 export default () => {
@@ -88,12 +71,12 @@ export default () => {
     case 'umd':
       return [{
         input: entryFile,
-        output: {...umdOutput, file: 'dist/umd/rollup-ui.development.js'},
+        output: {...umdOutput, file: 'dist/umd/yufud-icons.development.js'},
         external,
         plugins: [styles(stylePluginConfig), ...commonPlugins]
       }, {
         input: entryFile,
-        output: {...umdOutput, file: 'dist/umd/rollup-ui.production.min.js', plugins: [terser()]},
+        output: {...umdOutput, file: 'dist/umd/yufud-icons.production.min.js', plugins: [terser()]},
         external,
         plugins: [styles({...stylePluginConfig, minimize: true}), ...commonPlugins]
       }];
@@ -101,17 +84,17 @@ export default () => {
       return {
         input: [entryFile, ...componentEntryFiles],
         preserveModules: true, // rollup-plugin-styles 还是需要使用
-        output: { ...esOutput, dir: 'dist/es', format: 'es'},
+        output: { ...esOutput, dir: 'dist/es', format: 'es' },
         external,
-        plugins: [styles(esStylePluginConfig), ...commonPlugins]
+        plugins: [styles(stylePluginConfig), ...commonPlugins],
       };
     case 'cjs':
       return {
         input: [entryFile, ...componentEntryFiles],
         preserveModules: true, // rollup-plugin-styles 还是需要使用
-        output: { ...esOutput, dir: 'dist/cjs', format: 'cjs'},
+        output: { ...esOutput, dir: 'dist/cjs', format: 'cjs' },
         external,
-        plugins: [styles(esStylePluginConfig), ...commonPlugins]
+        plugins: [styles(stylePluginConfig), ...commonPlugins],
       };
     default:
       return [];      
