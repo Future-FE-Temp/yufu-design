@@ -21,7 +21,7 @@ module.exports = {
       .digest('hex');
   },
 
-  process(fileData, filename, config, options) {
+  process(fileData) {
     return `
       const styleInject = require('style-inject');
 

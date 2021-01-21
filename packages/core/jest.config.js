@@ -20,10 +20,10 @@ module.exports = {
     '^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|less|json)$)': '<rootDir>/jest/fileTransform.js',
   },
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$'],
+  moduleFileExtensions: ['ts', 'tsx', 'less', 'js', 'json', 'jsx', 'node', 'css'],
   moduleNameMapper: {
     '^tests/(.*)$': '<rootDir>/tests/$1',
   },
   watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
   resetMocks: true,
-  verbose: true,
 };
