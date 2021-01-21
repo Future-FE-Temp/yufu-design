@@ -14,5 +14,5 @@ maintained node versions
 
 [umd]
 defaults
-ie >= 11
+ie >= 10
 maintained node versions
