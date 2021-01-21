@@ -36,7 +36,7 @@
     "lint-staged:js": "cross-env-shell ESLINT_ENV=commit eslint --fix --ext .js,.jsx",
     "lint-staged:ts": "cross-env-shell ESLINT_ENV=commit eslint --fix --ext .ts,.tsx",
     "test": "node scripts/test.js -o",
-    "test:all": "node scripts/test.js --all",
+    "test:all": "node scripts/test.js --all --passWithNoTests",
     "test:watch": "node scripts/test.js --watch -o",
     "test:files": "node scripts/test.js --findRelatedTests",
     "test:coverage": "node scripts/test.js --coverage"
