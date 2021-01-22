@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import './Button.less';
+import './style/Button.less';
 
 function uniteClassNames(...args: (string | undefined)[]): string {
   const classNames = _.toArray(args).filter((className) => {
