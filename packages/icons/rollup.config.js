@@ -6,10 +6,9 @@ import * as fs from 'fs';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
-import replace from '@rollup/plugin-replace';
 import image from '@rollup/plugin-image';
 import eslint from '@rollup/plugin-eslint';
-import styles from 'rollup-plugin-styles'; // 暂时使用后续会被替代
+import postcss from 'rollup-plugin-postcss';
 import {terser} from 'rollup-plugin-terser';
 import autoprefixer from 'autoprefixer';
 
@@ -34,25 +33,16 @@ const commonPlugins = [
     extensions,
     skipPreflightCheck: true
   }),
-  // 全局变量替换
-  // replace({
-  //   exclude: 'node_modules/**',
-  //   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-  //   'process.env.BABEL_ENV': JSON.stringify(BABEL_ENV || 'umd'),
-  // }),
   commonjs(),
 ];
-const stylePluginConfig = {
-  mode: "extract",
-  less: {javascriptEnabled: true},
+
+const postcssConfig = {
+  plugins: [autoprefixer({env: BABEL_ENV})],
+  extract: true,
   extensions: ['.less', '.css'],
-  minimize: false,
-  use: ['less'],
-  url: {
-    inline: true
-  },
-  plugins: [autoprefixer({env: BABEL_ENV})]
+  use: {'less': {javascriptEnabled: true}}
 };
+
 const umdOutput = { 
   format: 'umd',
   name: 'YufudIcon',
@@ -64,6 +54,7 @@ const esOutput = {
   preserveModules: true,
   preserveModulesRoot: 'src',
   exports: 'named',
+  assetFileNames: '[name].[ext]',
 }
 
 export default () => {
@@ -73,12 +64,12 @@ export default () => {
         input: entryFile,
         output: {...umdOutput, file: 'dist/umd/yufud-icons.development.js'},
         external,
-        plugins: [styles(stylePluginConfig), ...commonPlugins]
+        plugins: [postcss(postcssConfig), ...commonPlugins]
       }, {
         input: entryFile,
         output: {...umdOutput, file: 'dist/umd/yufud-icons.production.min.js', plugins: [terser()]},
         external,
-        plugins: [styles({...stylePluginConfig, minimize: true}), ...commonPlugins]
+        plugins: [postcss({...postcssConfig, minimize: true}), ...commonPlugins]
       }];
     case 'esm':
       return {
@@ -86,7 +77,7 @@ export default () => {
         preserveModules: true, // rollup-plugin-styles 还是需要使用
         output: { ...esOutput, dir: 'dist/es', format: 'es' },
         external,
-        plugins: [styles(stylePluginConfig), ...commonPlugins],
+        plugins: [postcss(postcssConfig), ...commonPlugins],
       };
     case 'cjs':
       return {
@@ -94,7 +85,7 @@ export default () => {
         preserveModules: true, // rollup-plugin-styles 还是需要使用
         output: { ...esOutput, dir: 'dist/cjs', format: 'cjs' },
         external,
-        plugins: [styles(stylePluginConfig), ...commonPlugins],
+        plugins: [postcss(postcssConfig), ...commonPlugins],
       };
     default:
       return [];      
