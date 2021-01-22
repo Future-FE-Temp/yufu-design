@@ -1,4 +1,9 @@
-import './Button.less';
+/*
+  实际的组件实现
+*/
+import * as React from 'react';
+import './style/btn.less';
+import './style/index.less';
 
 export interface ButtonProps {
   /** 允许覆盖样式 */
@@ -14,7 +19,6 @@ export interface ButtonProps {
    */
   onClick?: () => void;
 }
-// 类似 const Button: React.FC<ButtonProps> = (props: ButtonProps) => {} 这种设置 React.FC 会导致 docz 识别不出 props
 
 const Button = (props: ButtonProps) => {
   const { className, children, type, onClick, size } = props;
@@ -35,7 +39,7 @@ const Button = (props: ButtonProps) => {
   return (
     <button
       type="button"
-      className={`${className} button`}
+      className={`${className} button index-style`}
       style={{
         borderColor: color,
         color,
@@ -43,6 +47,7 @@ const Button = (props: ButtonProps) => {
       }}
       onClick={onClick}
     >
+      <span className="icon-empty" />
       {children}
     </button>
   );
