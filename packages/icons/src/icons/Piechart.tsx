@@ -1,7 +1,7 @@
-import BaseIcon, { IconProps } from '../components/BaseIcon';
+import BaseIcon, { IconProps, SvgProps } from '../components/BaseIcon';
 
-const PiechartSvg = () => (
-  <svg>
+const PiechartSvg = (props: SvgProps) => (
+  <svg {...props}>
     <defs>
       <style type="text/css" />
     </defs>

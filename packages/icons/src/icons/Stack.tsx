@@ -1,7 +1,7 @@
-import BaseIcon, { IconProps } from '../components/BaseIcon';
+import BaseIcon, { IconProps, SvgProps } from '../components/BaseIcon';
 
-const StackSvg = () => (
-  <svg>
+const StackSvg = (props: SvgProps) => (
+  <svg {...props}>
     <defs>
       <style type="text/css" />
     </defs>
