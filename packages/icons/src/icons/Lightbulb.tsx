@@ -1,7 +1,7 @@
-import BaseIcon, { IconProps } from '../components/BaseIcon';
+import BaseIcon, { IconProps, SvgProps } from '../components/BaseIcon';
 
-const LightbulbSvg = () => (
-  <svg>
+const LightbulbSvg = (props: SvgProps) => (
+  <svg {...props}>
     <defs>
       <style type="text/css" />
     </defs>
