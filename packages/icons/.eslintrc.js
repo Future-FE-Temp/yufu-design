@@ -27,7 +27,7 @@ module.exports = {
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
-    }
+    },
   },
   globals: {
     React: true,
@@ -52,7 +52,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0, // 强制给 div span 等没有语义的标签加上 role 角色，（在有onClick 等事件的前提下）
     // react
     '@typescript-eslint/no-unused-expressions': 2, // 开启对短路求值和三元表达式的支持
-    "@typescript-eslint/explicit-module-boundary-types": "off", // 关闭对函数必须有返回值的支持 docz
+    '@typescript-eslint/explicit-module-boundary-types': 'off', // 关闭对函数必须有返回值的支持 docz
     'react/jsx-no-undef': [
       2,
       {
@@ -83,13 +83,19 @@ module.exports = {
         },
       },
     ],
-    ...(process.env.ESLINT_ENV === 'commit' ? commitRules : {})
+    ...(process.env.ESLINT_ENV === 'commit' ? commitRules : {}),
   },
   env: {
     browser: true,
     node: true,
   },
   settings: {
+    'import/resolver': {
+      alias: {
+        map: [['tests/(.*)', './tests/']],
+        extensions: ['.tsx', '.ts'],
+      },
+    },
     // react: {
       // version: '16.8.6',
     // },

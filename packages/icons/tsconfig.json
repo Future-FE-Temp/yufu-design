@@ -69,12 +69,13 @@
   "include": [
     // 指定需要编译的文件
     "src",
+    "tests",
   ],
   "exclude": [
     // 指定不需要编译的文件
     "node_modules",
     "dist/**/*",
-    "**/*.spec.ts",
-    "scripts/*"
+    "scripts/*",
+    "jest/**/*",
   ]
 }
