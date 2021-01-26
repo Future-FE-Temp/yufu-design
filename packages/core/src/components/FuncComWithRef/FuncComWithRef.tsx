@@ -2,10 +2,11 @@
   实际的组件实现
 */
 import * as React from 'react';
+import NoteButton from './NoteButton';
 import './style/btn.less';
 import './style/index.less';
 
-export interface ButtonProps {
+export interface FuncComWithRefProps {
   /** 允许覆盖样式 */
   className?: string;
   /** 可以传入 children */
@@ -18,9 +19,14 @@ export interface ButtonProps {
    * 单击事件
    */
   onClick?: () => void;
+  /** Flag */
+  flag?: 'Function Component With forwardRef';
 }
 
-const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
+const FuncComWithRef: React.FC<FuncComWithRefProps> = React.forwardRef<
+  HTMLButtonElement,
+  FuncComWithRefProps
+>((props: FuncComWithRefProps, ref) => {
   const { className, children, type, onClick, size } = props;
   let color = '#333333';
   if (type === 'primary') {
@@ -39,6 +45,7 @@ const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
   return (
     <button
       type="button"
+      ref={ref}
       className={`${className} button index-style`}
       style={{
         borderColor: color,
@@ -51,10 +58,14 @@ const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
       {children}
     </button>
   );
-};
-Button.defaultProps = {
+});
+FuncComWithRef.defaultProps = {
   type: 'primary',
   size: 'default',
 };
 
-export default Button;
+type FuncComFC<P> = React.FC<P> & {
+  NoteButton: typeof NoteButton;
+};
+
+export default FuncComWithRef as FuncComFC<FuncComWithRefProps>;

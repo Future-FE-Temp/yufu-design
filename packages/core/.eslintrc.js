@@ -52,7 +52,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0, // 强制给 div span 等没有语义的标签加上 role 角色，（在有onClick 等事件的前提下）
     // react
     '@typescript-eslint/no-unused-expressions': 2, // 开启对短路求值和三元表达式的支持
-    '@typescript-eslint/explicit-module-boundary-types': 'off', // 关闭对函数必须有返回值的支持 docz
+    // '@typescript-eslint/explicit-module-boundary-types': 'off', // 关闭对函数必须有返回值的支持 docz
     'react/jsx-no-undef': [
       2,
       {
@@ -73,6 +73,7 @@ module.exports = {
       //   ignore: [], // 忽视对 webpack.alias 模块的 eslint 模块索引报错
       // },
     ],
+    'import/no-cycle': 0, // 关闭循环引用排查，首先消耗性能，其次子组件间挂载到根组件上需要类似的循环引用 Button.SubButton
     '@typescript-eslint/camelcase': 0,
     'prettier/prettier': [
       'error',

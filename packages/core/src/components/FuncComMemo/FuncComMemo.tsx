@@ -2,10 +2,11 @@
   实际的组件实现
 */
 import * as React from 'react';
+import NoteButton from './NoteButton';
 import './style/btn.less';
 import './style/index.less';
 
-export interface ButtonProps {
+export interface FuncComMemoProps {
   /** 允许覆盖样式 */
   className?: string;
   /** 可以传入 children */
@@ -18,10 +19,13 @@ export interface ButtonProps {
    * 单击事件
    */
   onClick?: () => void;
+  /** Flag */
+  flag?: 'Function Component React.memo';
 }
 
-const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
+const FuncComMemo: React.FC<FuncComMemoProps> = (props: FuncComMemoProps) => {
   const { className, children, type, onClick, size } = props;
+  const [num, setNum] = React.useState(0);
   let color = '#333333';
   if (type === 'primary') {
     color = '#5352ED';
@@ -35,6 +39,11 @@ const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
     height = 24;
   }
 
+  function onBtnClick() {
+    setNum(num + 1);
+    if (onClick) onClick();
+  }
+
   /** 组件底层由原生 button 组件实现 */
   return (
     <button
@@ -45,16 +54,20 @@ const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
         color,
         height,
       }}
-      onClick={onClick}
+      onClick={onBtnClick}
     >
       <span className="icon-empty" />
-      {children}
+      {children} : {num}
     </button>
   );
 };
-Button.defaultProps = {
+FuncComMemo.defaultProps = {
   type: 'primary',
   size: 'default',
 };
 
-export default Button;
+type FuncComMemoFC<P> = React.NamedExoticComponent<P> & {
+  NoteButton: typeof NoteButton;
+};
+
+export default React.memo(FuncComMemo) as FuncComMemoFC<FuncComMemoProps>;
