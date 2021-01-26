@@ -57,8 +57,16 @@ jobs:
           restore-keys: |
             modules-${{ hashFiles('**/yarn.lock') }}
             modules-
+      - name: Git Identity
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: build
         run: yarn lerna:build
       - name: publish
         run: yarn lerna:publish --yes --legacy-auth ${{ secrets.NPM_SECRET }} ${{ github.event.inputs.parameter_for_publish }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
