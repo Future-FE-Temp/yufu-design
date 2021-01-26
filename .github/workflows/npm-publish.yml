@@ -5,6 +5,10 @@ name: Manual Publish(手动发布)
 
 on:
   workflow_dispatch:
+    inputs:
+      parameter_for_publish:
+        description: 'parameter for publish'
+        required: false
 
 jobs:
   setup:
@@ -55,6 +59,10 @@ jobs:
             modules-
       - name: build
         run: yarn lerna:build
+      - name: generate .npmrc
+        run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: publish
-        run: yarn lerna:publish --yes
+        run: yarn lerna:publish --yes ${{ github.event.inputs.parameter_for_publish }}
 
