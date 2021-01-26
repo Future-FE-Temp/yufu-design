@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [0.2.1](https://github.com/Future-FE-Temp/yufu-design/compare/@yffed/core@0.2.0...@yffed/core@0.2.1) (2021-01-26)
+
+
+### Bug Fixes
+
+* **core:** test ([a8bad67](https://github.com/Future-FE-Temp/yufu-design/commit/a8bad671c4b76113ef15d47446ba2b23121e7438))
+
+
+
 ## 0.2.0 (2021-01-26)
 
 
