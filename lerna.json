@@ -8,8 +8,9 @@
   "command": {
     "publish": {
       "ignoreChanges": [
-        "*.md"
+        "*.md", "**/__tests/**"
       ],
+      "message": "chore(release): publish %v",
       "registry": "https://registry.npmjs.org/"
     },
     "version": {
