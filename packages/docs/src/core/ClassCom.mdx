@@ -1,27 +1,26 @@
 ---
-name: Button
-route: /button
-menu: Components
+name: Class Component
+route: /classCom
+menu: Typescript Writing
 weight: 2
 ---
 import { Playground, Props } from 'docz';
-import {Button, TestButton} from '@yufud/core';
+import {ClassCom} from '@yufud/core';
 import './Button.less'
 
-# Button 按钮组件
+# Class Component Test
 
 ## 组件 Props 
 
-<Props of={Button}/>
-<Props of={TestButton}/>
+<Props of={ClassCom}/>
 
 
 ## 基本使用
 
 <Playground>
-  <Button>Open</Button>
-  <Button type="error">Open</Button>
-  <Button type="default">Open</Button>
+  <ClassCom>Open</ClassCom>
+  <ClassCom type="error">Open</ClassCom>
+  <ClassCom.NoteButton/>
 </Playground>
 
 
@@ -36,7 +35,7 @@ import './Button.less'
     const color = status === 'primary' ? '#5352ED' : '#FF4757';
     return (
       <div>
-        <Button onClick={onButtonClick} type={status}>change Status</Button>
+        <ClassCom onClick={onButtonClick} type={status}>change Status</ClassCom>
         <div style={{backgroundColor: color}} className="button-status">
           button status
         </div>

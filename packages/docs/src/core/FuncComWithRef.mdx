@@ -1,27 +1,26 @@
 ---
-name: Button
-route: /button
-menu: Components
+name: Function Component With forwardRef
+route: /funcComWithRef
+menu: Typescript Writing
 weight: 2
 ---
 import { Playground, Props } from 'docz';
-import {Button, TestButton} from '@yufud/core';
+import {FuncComWithRef} from '@yufud/core';
 import './Button.less'
 
-# Button 按钮组件
+# Function Component With forwardRef Test
 
 ## 组件 Props 
 
-<Props of={Button}/>
-<Props of={TestButton}/>
+<Props of={FuncComWithRef}/>
 
 
 ## 基本使用
 
 <Playground>
-  <Button>Open</Button>
-  <Button type="error">Open</Button>
-  <Button type="default">Open</Button>
+  <FuncComWithRef>Open</FuncComWithRef>
+  <FuncComWithRef type="error">Open</FuncComWithRef>
+  <FuncComWithRef.NoteButton />
 </Playground>
 
 
@@ -36,7 +35,7 @@ import './Button.less'
     const color = status === 'primary' ? '#5352ED' : '#FF4757';
     return (
       <div>
-        <Button onClick={onButtonClick} type={status}>change Status</Button>
+        <funcComWithRef onClick={onButtonClick} type={status}>change Status</funcComWithRef>
         <div style={{backgroundColor: color}} className="button-status">
           button status
         </div>
