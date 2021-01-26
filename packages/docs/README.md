@@ -1,11 +1,11 @@
-# `@yufud/docs`
+# `@yffed/docs`
 
 > TODO: description
 
 ## Usage
 
 ```
-const docs = require('@yufud/docs');
+const docs = require('@yffed/docs');
 
 // TODO: DEMONSTRATE API
 ```

@@ -1,11 +1,11 @@
-# `@yufud/icons`
+# `@yffed/icons`
 
 > TODO: description
 
 ## Usage
 
 ```
-const icons = require('@yufud/icons');
+const icons = require('@yffed/icons');
 
 // TODO: DEMONSTRATE API
 ```

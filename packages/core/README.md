@@ -1,11 +1,11 @@
-# `@yufud/core`
+# `@yffed/core`
 
 > TODO: description
 
 ## Usage
 
 ```
-const core = require('@yufud/core');
+const core = require('@yffed/core');
 
 // TODO: DEMONSTRATE API
 ```
