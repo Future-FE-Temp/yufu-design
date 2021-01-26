@@ -60,7 +60,5 @@ jobs:
       - name: build
         run: yarn lerna:build
       - name: publish
-        run: yarn lerna:publish --yes --legacy-auth ${{ NPM_SECRET }} ${{ github.event.inputs.parameter_for_publish }}
-        env:
-          NPM_SECRET: ${{ secrets.NPM_SECRET }}
+        run: yarn lerna:publish --yes --legacy-auth ${{ secrets.NPM_SECRET }} ${{ github.event.inputs.parameter_for_publish }}
 
