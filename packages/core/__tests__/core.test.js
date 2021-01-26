@@ -2,6 +2,6 @@
 
 const core = require('..');
 
-describe('@yufud/core', () => {
+describe('@yffed/core', () => {
     it('needs tests');
 });

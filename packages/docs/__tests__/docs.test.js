@@ -2,6 +2,6 @@
 
 const docs = require('..');
 
-describe('@yufud/docs', () => {
+describe('@yffed/docs', () => {
     it('needs tests');
 });
