@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 0.2.2 (2021-01-27)
+
+
+### Bug Fixes
+
+* **docs:** change ([3d1af60](https://github.com/Future-FE-Temp/yufu-design/commit/3d1af60b75fd111d67fc021c75a99ec89ffbb3c0))
+
+
+
 ### 0.2.1 (2021-01-27)
 
 **Note:** Version bump only for package @yffed/icons
