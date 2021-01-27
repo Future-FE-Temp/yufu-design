@@ -65,13 +65,13 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
       - name: build
         run: yarn lerna:build
       - name: publish
         run: yarn lerna:publish --yes --legacy-auth ${{ secrets.NPM_SECRET }} ${{ github.event.inputs.parameter_for_publish }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
+          GH_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
 
