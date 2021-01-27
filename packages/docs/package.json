@@ -1,6 +1,6 @@
 {
   "name": "@yffed/docs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "组件库文档",
   "private": true,
   "author": "mjzhang1993 <mingjiazhang@yufuid.com>",
@@ -39,7 +39,7 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "@yffed/core": "^1.0.0",
+    "@yffed/core": "^1.0.1",
     "@yffed/icons": "^1.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
