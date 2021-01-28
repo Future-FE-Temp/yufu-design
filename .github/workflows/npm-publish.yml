@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'To release (e.g., major | minor | patch | premajor | preminor | prepatch | 1.2.3)'
+        description: 'To release (e.g., major | minor | patch | premajor | preminor | prepatch | prerelease | 1.2.3)'
         required: false
       parameter_for_publish:
         description: 'parameter for publish'
