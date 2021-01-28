@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.0](https://github.com/Future-FE-Temp/yufu-design/compare/@yffed/core@1.0.0...@yffed/core@2.0.0) (2021-01-28)
+
+
+### Features
+
+* **core:** update Button ([13fd2e5](https://github.com/Future-FE-Temp/yufu-design/commit/13fd2e56408332cd42924ed38dd21190a397342c))
+
+
+### Bug Fixes
+
+* **core:** [FuncCom] update FuncCom annotation ([#13](https://github.com/Future-FE-Temp/yufu-design/issues/13)) ([7bd50fe](https://github.com/Future-FE-Temp/yufu-design/commit/7bd50fe5235342bb019eacd53c24f2af97861728))
+* **core:** change something  ([#16](https://github.com/Future-FE-Temp/yufu-design/issues/16)) ([b652a61](https://github.com/Future-FE-Temp/yufu-design/commit/b652a614b2f4629b14aa14a11f0f3cff9eb759bf)), closes [#15](https://github.com/Future-FE-Temp/yufu-design/issues/15)
+
+
+
 ### [1.0.1](https://github.com/Future-FE-Temp/yufu-design/compare/@yffed/core@1.0.0...@yffed/core@1.0.1) (2021-01-27)
 
 
