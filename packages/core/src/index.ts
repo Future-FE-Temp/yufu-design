@@ -12,3 +12,4 @@ export { default as FuncComMemo } from './components/FuncComMemo';
 export { default as PromiseButton } from './components/PromiseButton';
 export { default as ImageTest } from './components/ImageTest';
 export { default as TestButton } from './components/TestButton';
+export { default as ButtonFn } from './components/ButtonFn';
