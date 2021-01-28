@@ -73,9 +73,9 @@ jobs:
       - name: build
         run: yarn lerna:build
       - name: publish
-        run: yarn lerna:publish --yes --legacy-auth ${{ secrets.NPM_SECRET }} --create-release github ${{ github.event.inputs.parameter_for_publish }} ${{ github.event.inputs.version }}
+        run: yarn lerna:publish --yes --legacy-auth ${{ secrets.NPM_SECRET }} --message "chore(release):publish %v" --create-release github ${{ github.event.inputs.parameter_for_publish }} ${{ github.event.inputs.version }}
+
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
           GH_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
           NODE_AUTH_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
-
