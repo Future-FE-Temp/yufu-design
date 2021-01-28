@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.0](https://github.com/Future-FE-Temp/yufu-design/compare/@yffed/core@2.0.0...@yffed/core@2.1.0) (2021-01-28)
+
+
+### Features
+
+* **core:** [ButtonFn] create a component ([#18](https://github.com/Future-FE-Temp/yufu-design/issues/18)) ([90441d0](https://github.com/Future-FE-Temp/yufu-design/commit/90441d0d102367949c568d125f6e71d28787fa48))
+
+
+
 ## [2.0.0](https://github.com/Future-FE-Temp/yufu-design/compare/@yffed/core@1.0.0...@yffed/core@2.0.0) (2021-01-28)
 
 
