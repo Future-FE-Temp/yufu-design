@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'To release (e.g., major | minor | patch | premajor | preminor | prepatch | prerelease | 1.2.3)'
+        description: 'To release (e.g., major | minor | patch | premajor | preminor | prepatch | 1.2.3)'
         required: false
       parameter_for_publish:
         description: 'parameter for publish'
@@ -73,7 +73,7 @@ jobs:
       - name: build
         run: yarn lerna:build
       - name: publish
-        run: yarn lerna:publish --yes --legacy-auth ${{ secrets.NPM_SECRET }} --message "chore(release):publish %v" --create-release github ${{ github.event.inputs.parameter_for_publish }} ${{ github.event.inputs.version }}
+        run: yarn lerna:publish --yes --legacy-auth ${{ secrets.NPM_SECRET }} --create-release github ${{ github.event.inputs.parameter_for_publish }} ${{ github.event.inputs.version }}
 
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
