@@ -27,7 +27,7 @@
   "scripts": {
     "build": "yarn build:esm && yarn build:cjs && yarn build:umd",
     "build:esm": "rimraf dist/es && cross-env-shell NODE_ENV=production BABEL_ENV=esm \"rollup -c && yarn build:style && yarn build:typed --outDir dist/es\"",
-    "build:cjs": "rimraf dist/cjs && cross-env-shell NODE_ENV=production BABEL_ENV=cjs rollup -c && yarn build:style && yarn build:typed --outDir dist/cjs",
+    "build:cjs": "rimraf dist/cjs && cross-env-shell NODE_ENV=production BABEL_ENV=cjs \"rollup -c && yarn build:style && yarn build:typed --outDir dist/cjs\"",
     "build:umd": "rimraf dist/umd && cross-env-shell NODE_ENV=production BABEL_ENV=umd rollup -c",
     "build:typed": "tsc --emitDeclarationOnly -p ./tsconfig.typed.json",
     "build:style": "gulp",
