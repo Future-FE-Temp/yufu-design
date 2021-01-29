@@ -12,11 +12,12 @@ import eslint from '@rollup/plugin-eslint';
 import postcss from 'rollup-plugin-postcss';
 import {terser} from 'rollup-plugin-terser';
 import autoprefixer from 'autoprefixer';
+import url from 'postcss-url';
 
 const entryFile = 'src/index.ts';
 const BABEL_ENV = process.env.BABEL_ENV || 'umd';
 const extensions = ['.js', '.ts', '.tsx'];
-const globals = {react: 'React', 'react-dom': 'ReactDOM'};
+const globals = {react: 'React', 'react-dom': 'ReactDOM', 'lodash': '_'};
 const externalPkg = ['react', 'react-dom', 'lodash'];
 BABEL_ENV !== 'umd' && externalPkg.push('@babel/runtime');
 const external = id => externalPkg.some(e => id.indexOf(e) === 0);
@@ -45,7 +46,7 @@ const commonPlugins = [
 ];
 
 const postcssConfig = {
-  plugins: [autoprefixer({env: BABEL_ENV})],
+  plugins: [autoprefixer({env: BABEL_ENV}), url({ url: 'inline' })],
   extract: true,
   extensions: ['.less', '.css'],
   use: {'less': {javascriptEnabled: true}}
