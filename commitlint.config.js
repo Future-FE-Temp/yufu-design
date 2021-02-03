@@ -1,1 +1,1 @@
-module.exports = {extends: ['@commitlint/config-conventional']}
+module.exports = {extends: ['@yffed/cz-changelog/lib/commitlint-config']}
