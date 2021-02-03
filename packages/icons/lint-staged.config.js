@@ -15,6 +15,8 @@ module.exports = {
   '**/*.{ts,tsx}': () => 'yarn check:tsc', // 函数的方式用来避免，传递过来的 fileNamse 进入 tsc 的类型检查中
   '**/*.{js,jsx,ts,tsx,css,less}': (fileNames) => {
     const fileStr = fileNames.join(' ');
-    return fileNames.length > 30 ? 'yarn test:all' : `yarn test:files ${fileStr}`;
+    return fileStr.includes('jest/') || fileNames.length > 30
+      ? 'yarn test:all'
+      : `yarn test:files ${fileStr}`;
   },
 };

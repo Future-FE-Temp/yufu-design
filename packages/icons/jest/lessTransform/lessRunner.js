@@ -19,7 +19,8 @@ if (!filename || typeof filename !== 'string') {
 
 less
   .render(lessContent, {
-    paths: [path.dirname(filename)],
+    paths: [],
+    filename: filename,
   })
   .then(
     (result) => console.log(JSON.stringify(result)),
