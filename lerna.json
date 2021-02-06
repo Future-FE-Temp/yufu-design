@@ -19,7 +19,7 @@
         "*.md"
       ],
       "changelogPreset": {
-        "name": "@mjz-test/conventional-changelog-mjz",
+        "name": "@yufud/conventional-changelog-preset",
         "scopeSequence": [
           "@yffed/core",
           "@yffed/icons",
