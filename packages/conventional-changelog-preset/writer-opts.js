@@ -126,26 +126,38 @@ function getWriterOpts (config) {
         ];
       }
 
-      context.commitGroups = context.commitGroups.map((scopeGroup) => {
+      let nextCommitGroups = [];
+      let otherCommitGroups = {};
+      context.commitGroups.map((scopeGroup) => {
         const commits = scopeGroup.commits;
         const preTypeGroup = sequenceArray(commits, typeSequence, (commit) => commit.type);
+        const isDisplayScope = isSubPackage || scopeSequenceMap[scopeGroup.title];
+        let typeGroups = []
         
-        const typeGroups = preTypeGroup.map(typeCommits => {
+        preTypeGroup.forEach(typeCommits => {
           const type = _.get(typeCommits, '[0].type') || '';
           const entry = typesMap[type] || {};
-          return {
-            type: type, 
-            typeSection: _.get(entry, 'section') || '',
-            commits: typeCommits.sort(functionify(config.commitsSort))
-          };
+          const sortedCommits = typeCommits.sort(functionify(config.commitsSort));
+          const typeSection =  _.get(entry, 'section') || '';
+          if (isDisplayScope) {
+            typeGroups.push({ type, typeSection, commits: sortedCommits });
+          } else {
+            otherCommitGroups[type] = {type, typeSection, commits: (_.get(otherCommitGroups, `${type}.commits`) || []).concat(sortedCommits)}
+          }
         })
         
-        return {
-          title: isSubPackage ? scopeGroup.title : (scopeSequenceMap[scopeGroup.title] || scopeGroup.title || '👽 Other Effect'),
-          typeGroups
+        if (isSubPackage) {
+          nextCommitGroups.push({title: scopeGroup.title, typeGroups});
+        } else if (scopeSequenceMap[scopeGroup.title]) {
+          nextCommitGroups.push({title: scopeSequenceMap[scopeGroup.title], typeGroups})
         }
       });
-
+      
+      const others = Object.values(otherCommitGroups);
+      context.commitGroups = others.length > 0 ? nextCommitGroups.concat([{
+        title: '👽 Other Effect',
+        typeGroups: sequenceArray(others, typeSequence, g => g.type)
+      }]) : nextCommitGroups;
       // TODO: version compare 处理还有点问题
       // context.linkCompare = true;
 
@@ -159,7 +171,7 @@ function getWriterOpts (config) {
       
       let idxA = scopeSequence.indexOf(scopeSequenceMap[a.title] || a.title)
       let idxB = scopeSequence.indexOf(scopeSequenceMap[b.title] || b.title)
-      return idxA >= idxB ? -1 : 1;
+      return idxA >= idxB ? 1 : -1;
     },
     commitsSort: config.commitsSort,
     noteGroupsSort: 'title',
