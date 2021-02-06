@@ -57,24 +57,24 @@ function completeStyle(cb) {
     if (!hasStyle) {
       fs.mkdirSync(mStylePath);
       fs.writeFileSync(path.join(mStylePath, 'index.css'), '');
-      // fs.writeFileSync(path.join(mStylePath, 'index.js'), ''); // theme 专用
-      // fs.writeFileSync(path.join(mStylePath, 'css.js'), '');
+      fs.writeFileSync(path.join(mStylePath, 'index.js'), ''); // theme 专用
+      fs.writeFileSync(path.join(mStylePath, 'css.js'), '');
     } else {
       // theme 专用
-      // let styleFiles = [];
-      // try {
-      //   styleFiles = fs.readdirSync(mStylePath);
-      // } catch (error) {
-      //   fs.mkdirSync(mStylePath);
-      // }
-      // fs.writeFileSync(
-      //   path.join(mStylePath, 'index.js'),
-      //   styleFiles
-      //     .filter((f) => path.extname(f) === '.less')
-      //     .map((f) => `import \'./${f}\'`)
-      //     .join('\n'),
-      // );
-      // fs.writeFileSync(path.join(mStylePath, 'css.js'), "import './index.css'");
+      let styleFiles = [];
+      try {
+        styleFiles = fs.readdirSync(mStylePath);
+      } catch (error) {
+        fs.mkdirSync(mStylePath);
+      }
+      fs.writeFileSync(
+        path.join(mStylePath, 'index.js'),
+        styleFiles
+          .filter((f) => path.extname(f) === '.less')
+          .map((f) => `import \'./${f}\'`)
+          .join('\n'),
+      );
+      fs.writeFileSync(path.join(mStylePath, 'css.js'), "import './index.css'");
     }
   });
   cb();
@@ -83,6 +83,6 @@ function completeStyle(cb) {
 // 执行工作流
 exports.default = series(
   parallel(...componentDirs.map((name) => extractStyle(name))),
-  // copyLessFile, theme 专用
+  copyLessFile,
   completeStyle,
 );
