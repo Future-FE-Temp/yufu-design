@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.1 (2021-02-06)
+
+### @yffed/icons
+
+#### `✨ Features`
+
+* ***[Readme]***  update readme ([1c4ec8c](https://github.com/Future-FE-Temp/yufu-design/commit/1c4ec8c2efde8f9c7fade78ee35f12388e611d67))
+
+#### `🐛 Bug Fixes`
+
+* update Readme ([5c75e56](https://github.com/Future-FE-Temp/yufu-design/commit/5c75e568de6ec46e08d92629b53a8f440cb185b2))
+
+### @yffed/conventional-changelog-preset
+
+#### `🐛 Bug Fixes`
+
+* ***[HBS]***  enhance handlebars template ([ba971ec](https://github.com/Future-FE-Temp/yufu-design/commit/ba971ec31575457b8ae0c37eef99fa98954c2c39))
+
+
+
+
 # 3.1.0 (2021-02-06)
 
 ### @yffed/core
