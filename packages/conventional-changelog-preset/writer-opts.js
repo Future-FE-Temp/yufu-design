@@ -38,7 +38,8 @@ function getWriterOpts (config) {
     ? config.scopeSequence.reduce((map, s) => {
       return _.isString(s) ? {...map, [s.replace(/^@(\w|-)+\//, '')]: s} : map;
     }, {})
-    : {}
+    : {};
+  console.log(config.scopeSequence, scopeSequenceMap);
   return {
     // 给每一次 commit 做前期转换
     transform: (commit, context) => {
@@ -104,6 +105,7 @@ function getWriterOpts (config) {
     // 数据再传递给 handlebars 模板渲染前，最后一次处理机会
     finalizeContext(context) {
       const {typeSequence} = config;
+      console.log(context.commitGroups.map(c => c.title));
       const isSubPackage = !_.get(context, 'packageData.workspaces');
       // TODO: scopeGroup.title 如何处理 npm scope 的命名（@yffed/core） 需要提出一个公共的方法
       if (isSubPackage) {
@@ -146,8 +148,6 @@ function getWriterOpts (config) {
 
       // TODO: version compare 处理还有点问题
       // context.linkCompare = true;
-      
-      context.scopeDivider = '-------';
 
       return context;
     },
