@@ -35,8 +35,7 @@ module.exports = function (config) {
 }
 
 function getWriterOpts (config) {
-  const lernaProject = new Project();
-  console.log(lernaProject);
+  config.lernaPackage = lernaProject.isIndependent();
   const typesMap = config.types.reduce((map, c) => ({...map, [c.type]: c}), {});
   const scopeSequenceMap = Array.isArray(config.scopeSequence) 
     ? config.scopeSequence.reduce((map, s) => {
@@ -169,7 +168,11 @@ function getWriterOpts (config) {
        * 导致 linkCompare 属性没有插入，因此这里 fork 了 conventional-changelog-core 的 finalizeContext 
        * 来追加响应的处理
        * */ 
-      context = addLinkCompare(context, keyCommit, originalCommits, {});
+      context = addLinkCompare(context, keyCommit, originalCommits, {
+        append: false,
+        tagPrefix: 'v', // 暂不提供配置能力（实际上由 lerna 配置 与 lerna 命令行参数共同决定）
+        lernaPackage: config.lernaPackage
+      });
       
       console.log(context);
       return context;

@@ -1,11 +1,11 @@
-# `@yufud/conventional-changelog-preset`
+# `@yffed/conventional-changelog-preset`
 
 > TODO: description
 
 ## Usage
 
 ```
-const conventionalChangelogPreset = require('@yufud/conventional-changelog-preset');
+const conventionalChangelogPreset = require('@yffed/conventional-changelog-preset');
 
 // TODO: DEMONSTRATE API
 ```
