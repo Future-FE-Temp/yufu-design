@@ -17,7 +17,7 @@ function autoCompleteSource(options) {
 module.exports = (allPackages, changedPackages, config) => ([
   {
     name: 'type',
-    message: 'Select the TYPE of change that you\'re committing:',
+    message: 'Select the TYPE of change that you\'re committing:\n',
     choices: config.typeChoices,
     type: 'autocomplete',
     source: autoCompleteSource(config.typeChoices),
@@ -31,12 +31,12 @@ module.exports = (allPackages, changedPackages, config) => ([
       });
       return [{value: false, name: 'empty'}, ...pkgs];
     },
-    message: 'Select the PACKAGE with the more significant changes (optional):',
+    message: 'Select the PACKAGE with the more significant changes (optional):\n',
   },
   {
     type: 'list',
     name: 'subScope',
-    message: '\nDenote the SUB_SCOPE of this change (optional):',
+    message: 'Denote the SUB_SCOPE of this change (optional):\n',
     choices(answers) {
       let scopes = [
         { value: false,    name: 'empty:    Do not need to select the SubScope option' },
@@ -52,7 +52,7 @@ module.exports = (allPackages, changedPackages, config) => ([
   {
     type: 'input',
     name: 'subScope',
-    message: '\nDenote the SUB_SCOPE of this change:',
+    message: 'Denote the SUB_SCOPE of this change:\n',
     when(answers) {
       return answers.subScope === 'custom';
     },
@@ -65,7 +65,7 @@ module.exports = (allPackages, changedPackages, config) => ([
       const prefixHead = generatePrefixHead(answers, config);
 
       if (value.length > config.headerLimit - prefixHead.length) {
-        return `Header must not be longer than ${config.headerLimit} characters.(Now: ${prefixHead.length + value.length})`;
+        return `Header must not be longer than ${config.headerLimit} characters.(Now: ${prefixHead.length + value.length})\n`;
       }
       return !!value;
     },
