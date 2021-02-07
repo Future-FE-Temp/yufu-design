@@ -174,7 +174,6 @@ function getWriterOpts (config) {
         lernaPackage: config.lernaPackage
       });
       
-      console.log(context);
       return context;
     },
     // 排序的依据, 其值需要是 commit 对象上包含的的属性（commit 对象上的属性可以通过 transform 添加）
