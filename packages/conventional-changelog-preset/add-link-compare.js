@@ -2,6 +2,8 @@
  * Fork [conventional-changelog-core](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-core)
  * 中 内置 finalizeContext 关于 linkCompare 的操作
 */
+const _ = require('lodash')
+
 module.exports = function (context, keyCommit, originalCommits, options) {
   const gitSemverTags = context.gitSemverTags
   const firstCommit = originalCommits[0]
