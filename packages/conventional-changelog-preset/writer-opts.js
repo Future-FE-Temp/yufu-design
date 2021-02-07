@@ -161,7 +161,7 @@ function getWriterOpts (config) {
       }]) : nextCommitGroups;
       // TODO: version compare 处理还有点问题
       // context.linkCompare = true;
-
+      console.log(context);
       return context;
     },
     // 排序的依据, 其值需要是 commit 对象上包含的的属性（commit 对象上的属性可以通过 transform 添加）
