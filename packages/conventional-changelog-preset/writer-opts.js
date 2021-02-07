@@ -4,8 +4,10 @@ const compareFunc = require('compare-func')
 const Q = require('q')
 const _ = require('lodash');
 const readFile = Q.denodeify(require('fs').readFile)
+const Project = require('@lerna/project');
 const resolve = require('path').resolve
 const addBangNotes = require('./add-bang-notes')
+const addLinkCompare = require('./add-link-compare')
 const {functionify, sequenceArray} = require('./tools')
 
 module.exports = function (config) {
@@ -33,6 +35,8 @@ module.exports = function (config) {
 }
 
 function getWriterOpts (config) {
+  const lernaProject = new Project();
+  console.log(lernaProject);
   const typesMap = config.types.reduce((map, c) => ({...map, [c.type]: c}), {});
   const scopeSequenceMap = Array.isArray(config.scopeSequence) 
     ? config.scopeSequence.reduce((map, s) => {
@@ -103,7 +107,7 @@ function getWriterOpts (config) {
       return commit
     },
     // 数据再传递给 handlebars 模板渲染前，最后一次处理机会
-    finalizeContext(context) {
+    finalizeContext(context, writerOpts, filteredCommits, keyCommit, originalCommits) {
       const {typeSequence} = config;
       const isSubPackage = !_.get(context, 'packageData.workspaces');
       
@@ -159,8 +163,14 @@ function getWriterOpts (config) {
         title: '👽 Other Effect',
         typeGroups: _.flatten(sequenceArray(others, typeSequence, g => g.type))
       }]) : nextCommitGroups;
-      // TODO: version compare 处理还有点问题
-      // context.linkCompare = true;
+      
+      /**
+       * 由于 finalizeContext 这个配置会将  conventional-changelog-core 内置的 finalizeContext 覆盖掉，
+       * 导致 linkCompare 属性没有插入，因此这里 fork 了 conventional-changelog-core 的 finalizeContext 
+       * 来追加响应的处理
+       * */ 
+      context = addLinkCompare(context, keyCommit, originalCommits, {});
+      
       console.log(context);
       return context;
     },
