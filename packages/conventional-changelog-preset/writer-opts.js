@@ -35,7 +35,7 @@ module.exports = function (config) {
 }
 
 function getWriterOpts (config) {
-  config.lernaPackage = lernaProject.isIndependent();
+  config.lernaPackage = new Project().isIndependent();
   const typesMap = config.types.reduce((map, c) => ({...map, [c.type]: c}), {});
   const scopeSequenceMap = Array.isArray(config.scopeSequence) 
     ? config.scopeSequence.reduce((map, s) => {
