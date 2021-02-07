@@ -3,6 +3,7 @@
  * 中 内置 finalizeContext 关于 linkCompare 的操作
 */
 module.exports = function (context, keyCommit, originalCommits, options) {
+  const gitSemverTags = context.gitSemverTags
   const firstCommit = originalCommits[0]
   const lastCommit = originalCommits[originalCommits.length - 1]
   const firstCommitHash = firstCommit ? firstCommit.hash : null
