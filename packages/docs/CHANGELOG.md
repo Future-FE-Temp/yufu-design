@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.0](https://github.com/Future-FE-Temp/yufu-design/compare/v3.1.2...v4.0.0) _(2021-02-08)_
+
+#### `📖 Documentation`
+
+* add Button Document ([e06e094](https://github.com/Future-FE-Temp/yufu-design/commit/e06e0947290ff8ec77bb44aeb56aa2696058d745))
+
+> ### _👽 Other Effect_
+
+#### `📖 Documentation`
+
+* ***[Readme]***  update Readme.md file ([e44173e](https://github.com/Future-FE-Temp/yufu-design/commit/e44173e191ea62dfe0fc45ebf00cee55f14bd33d))
+
+
+
 # 3.1.0 (2021-02-06)
 
 #### ✨ Features
