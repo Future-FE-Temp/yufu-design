@@ -7,5 +7,5 @@
 ```
 const icons = require('@yffed/icons');
 
-// TODO: DEMONSTRATE APIs
+// TODO: DEMONSTRATE API
 ```
