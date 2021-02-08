@@ -7,5 +7,5 @@
 ```
 const docs = require('@yffed/docs');
 
-// TODO: DEMONSTRATE API test-gfy
+// TODO: DEMONSTRATE API test-gfys
 ```

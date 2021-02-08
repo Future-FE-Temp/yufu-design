@@ -7,5 +7,5 @@
 ```
 const conventionalChangelogPreset = require('@yffed/conventional-changelog-preset');
 
-// TODO: DEMONSTRATE API
+// TODO: DEMONSTRATE APIs
 ```

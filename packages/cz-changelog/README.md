@@ -7,5 +7,5 @@
 ```
 const czChangelog = require('@yffed/cz-changelog');
 
-// TODO: DEMONSTRATE API
+// TODO: DEMONSTRATE APIs
 ```
