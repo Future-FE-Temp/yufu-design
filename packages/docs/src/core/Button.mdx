@@ -4,17 +4,15 @@ route: /button
 menu: Components
 weight: 2
 ---
-import { Playground, Props } from 'docz';
-import {Button, TestButton} from '@yffed/core';
-import './Button.less'
+
+import { Playground, Props } from "docz";
+import { Button, TestButton } from "@yffed/core";
+import "../../public/style/main.less";
 
 # Button 按钮组件
 
-## 组件 Props 
-
-<Props of={Button}/>
-<Props of={TestButton}/>
-
+<Props of={Button} />
+<Props of={TestButton} />
 
 ## 基本使用
 
@@ -24,20 +22,21 @@ import './Button.less'
   <Button type="default">Open</Button>
 </Playground>
 
-
 ## 复杂一点，带有状态管理的使用
 
 <Playground>
   {() => {
-    const [status, setStatus] = React.useState('primary');
+    const [status, setStatus] = React.useState("primary");
     function onButtonClick() {
-      setStatus(status === 'primary' ? 'error' : 'primary');
+      setStatus(status === "primary" ? "error" : "primary");
     }
-    const color = status === 'primary' ? '#5352ED' : '#FF4757';
+    const color = status === "primary" ? "#5352ED" : "#FF4757";
     return (
       <div>
-        <Button onClick={onButtonClick} type={status}>change Status</Button>
-        <div style={{backgroundColor: color}} className="button-status">
+        <Button onClick={onButtonClick} type={status}>
+          change Status
+        </Button>
+        <div style={{ backgroundColor: color }} className="button-status">
           button status
         </div>
       </div>
