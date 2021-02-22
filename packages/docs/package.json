@@ -41,7 +41,9 @@
   "dependencies": {
     "@yffed/core": "^4.0.0",
     "@yffed/icons": "^4.0.0",
+    "axios": "^0.21.1",
     "react": "^17.0.1",
+    "react-color": "^2.19.3",
     "react-dom": "^17.0.1"
   }
 }

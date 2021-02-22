@@ -39,7 +39,8 @@
     "test:all": "node scripts/test.js --all --passWithNoTests",
     "test:watch": "node scripts/test.js --watch -o",
     "test:files": "node scripts/test.js --findRelatedTests",
-    "test:coverage": "node scripts/test.js --coverage"
+    "test:coverage": "node scripts/test.js --coverage",
+    "mergeLess": "node scripts/mergeLess.js"
   },
   "bugs": {
     "url": "https://github.com/Future-FE-Temp/yufu-design/issues"
