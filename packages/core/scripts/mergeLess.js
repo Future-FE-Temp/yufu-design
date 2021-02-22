@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 
 const filePath = path.resolve('./src');
-const variablePath = path.resolve('./Public/commonStyle');
 
 // let lessSummary = '';
 
@@ -35,10 +34,8 @@ function mergeLess(filePath) {
             var isFile = stats.isFile(); //是文件
             var isDir = stats.isDirectory(); //是文件夹
             if (isFile) {
-              //获取最后一个.的位置
-              var index = fileDir.lastIndexOf('.');
-              //获取后缀
-              var ext = fileDir.substr(index + 1);
+              // //获取后缀
+              var ext = path.extname(fileDir);
               if (ext === 'less') {
                 fs.readFile(fileDir, 'utf8', function (readError, fileStr) {
                   if (readError) {
@@ -69,5 +66,4 @@ function mergeLess(filePath) {
   });
 }
 
-mergeLess(variablePath); // 读取变量相关less文件
 mergeLess(filePath); // 读取每个组件中的样式
