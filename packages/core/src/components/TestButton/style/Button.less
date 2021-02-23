@@ -2,13 +2,13 @@
 @prefixClsIntent: ~'@{prefixCls}-intent';
 
 .@{prefixCls} {
-  cursor: pointer;
-  background-color: white;
-  border: 1px solid #dce1ed;
-  border-radius: 4px;
   padding: 4px 12px;
   line-height: 22px;
   color: #425a70;
+  background-color: white;
+  border: 1px solid #dce1ed;
+  cursor: pointer;
+  border-radius: 4px;
 
   &.@{prefixClsIntent}-success {
     color: #57c37b;
@@ -19,9 +19,9 @@
   }
 
   &.@{prefixCls}-disabled {
-    cursor: not-allowed;
     color: rgba(0, 0, 0, 0.25);
     background-color: rgba(206, 217, 224, 0.5);
+    cursor: not-allowed;
   }
 
   &.@{prefixCls}-hidden {
@@ -30,8 +30,8 @@
 }
 
 .@{prefixCls}.@{prefixCls}-primary {
-  background-color: #406cf8;
   color: white;
+  background-color: #406cf8;
 
   &.@{prefixClsIntent}-success {
     background-color: #57c37b;
