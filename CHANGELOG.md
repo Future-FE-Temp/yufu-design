@@ -29,7 +29,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * ***[FuncCom]***  refactor component implementations to improve UI presentation ([db104b2](https://github.com/Future-FE-Temp/yufu-design/commit/db104b2e7876ec3831efdce6b8f314e8bb158836))
 
-> ### _@yffed/icons_
+> ###       _@yffed/icons_
 
 #### `✨ Features`
 
