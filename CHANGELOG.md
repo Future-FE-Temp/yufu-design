@@ -43,7 +43,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 > ### _👽 Other Effect_
 
-#### `📖 Documentation`
+> ### _`📖 Documentation`_
 
 * ***[Readme]***  update Readme.md file ([e44173e](https://github.com/Future-FE-Temp/yufu-design/commit/e44173e191ea62dfe0fc45ebf00cee55f14bd33d))
 
