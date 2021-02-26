@@ -7,5 +7,5 @@
 ```
 const core = require('@yffed/core');
 
-// TODO: DEMONSTRATE APIs
+// TODO: DEMONSTRATE APIsss
 ```
