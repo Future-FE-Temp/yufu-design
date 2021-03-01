@@ -23,7 +23,7 @@ function mergeDefaultConfig(config) {
     types: [
       { type: 'feat',     section: '✨ Features'},
       { type: 'fix',      section: '🐛 Bug Fixes'},
-      { type: 'docs',     section: '📖 Documentation'},
+      { type: 'docs',     section: '📖 Documentation', hidden: true},
       { type: 'refactor', section: '🔨 Code Refactoring'},
       { type: 'test',     section: '🚨 Tests', hidden: true },
       { type: 'chore',    section: '🔧 Miscellaneous Chores', hidden: true},
@@ -33,7 +33,7 @@ function mergeDefaultConfig(config) {
     scopeSequence: [
       // { "scope": "@scope/name", "alias": "Display title" }
     ],
-    typeSequence: ['feat', 'fix', 'refactor'],
+    typeSequence: ['feat', 'fix', 'refactor'], // 仅用来排序，是否显示取决于 types[n].hidden
     ...(config || {})
   };
 }
