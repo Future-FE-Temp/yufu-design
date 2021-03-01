@@ -30,7 +30,9 @@ function mergeDefaultConfig(config) {
       { type: 'revert',   section: '⏪ Reverts'},
     ],
     commitsSort: ['subScope', 'subject'],
-    scopeSequence: [],
+    scopeSequence: [
+      // { "scope": "@scope/name", "alias": "Display title" }
+    ],
     typeSequence: ['feat', 'fix', 'refactor'],
     ...(config || {})
   };

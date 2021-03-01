@@ -22,12 +22,11 @@
       "changelogPreset": {
         "name": "@yffed/conventional-changelog-preset",
         "scopeSequence": [
-          "@yffed/core",
-          "@yffed/icons",
-          "@yffed/docs",
-          "@yffed/cz-changelog",
-          "@yffed/conventional-changelog-preset"
-        ]
+          { "scope": "@yffed/core" },
+          { "scope": "@yffed/icons" },
+          { "scope": "@yffed/docs", "alias": "📖 Documentation" }
+        ],
+        "typeSequence": ["feat", "fix", "refactor"]
       }
     }
   }

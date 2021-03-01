@@ -37,11 +37,17 @@ module.exports = function (config) {
 function getWriterOpts (config) {
   config.lernaPackage = new Project().isIndependent();
   const typesMap = config.types.reduce((map, c) => ({...map, [c.type]: c}), {});
-  const scopeSequenceMap = Array.isArray(config.scopeSequence) 
-    ? config.scopeSequence.reduce((map, s) => {
-      return _.isString(s) ? {...map, [s.replace(/^@(\w|-)+\//, '')]: s} : map;
-    }, {})
-    : {};
+  const scopeSequenceMap = {};
+  const scopeSequenceIdx = {};
+  if (Array.isArray(config.scopeSequence)) {
+    config.scopeSequence.forEach((c, idx) => {
+      const s = _.get(c, 'scope') || '';
+      if (_.isString(s)) {
+        scopeSequenceMap[s.replace(/^@(\w|-)+\//, '')] = _.get(c, 'alias') || s;
+        scopeSequenceIdx[s.replace(/^@(\w|-)+\//, '')] = idx;
+      }
+    });
+  }
 
   return {
     // 给每一次 commit 做前期转换
@@ -110,23 +116,16 @@ function getWriterOpts (config) {
       const {typeSequence} = config;
       const isSubPackage = !_.get(context, 'packageData.workspaces');
       
-      // TODO: scopeGroup.title 如何处理 npm scope 的命名（@yffed/core） 需要提出一个公共的方法s
+      // sub package 仅显示自己的 commit, 不区分 scope
       if (isSubPackage) {
         const subPkgName = (_.get(context, 'packageData.name') || '').replace(/^@(\w|-)+\//, '');
-        const subPkgCommitGroups = {
-          [subPkgName]: {title: '', commits: []}, // title = '' 可以不显示 scope
-          others: {title: '👽 Other Effect', commits: []}
-        };
+        const subPkgCommitGroups = {title: '', commits: []}; // title = '' 可以不显示 scope
         context.commitGroups.forEach(scopeGroup => {
           if (!Array.isArray(scopeGroup.commits)) return;
-          
-          subPkgCommitGroups[scopeGroup.title === subPkgName ? subPkgName : 'others'].commits.push(...scopeGroup.commits);
+          subPkgCommitGroups.commits.push(...scopeGroup.commits);
         });
 
-        context.commitGroups = [subPkgCommitGroups[subPkgName]];
-        if (subPkgCommitGroups.others.commits.length > 0) {
-          context.commitGroups.push(subPkgCommitGroups.others);
-        }
+        context.commitGroups = [subPkgCommitGroups];
       }
 
       let nextCommitGroups = [];
@@ -157,11 +156,16 @@ function getWriterOpts (config) {
       });
       
       const others = Object.values(otherCommitGroups);
-
-      context.commitGroups = others.length > 0 ? nextCommitGroups.concat([{
-        title: '👽 Other Effect',
-        typeGroups: _.flatten(sequenceArray(others, typeSequence, g => g.type))
-      }]) : nextCommitGroups;
+      
+      /**
+       * NOTICE: 顶层 changelog 不显示 scopeSequence 以外的 scope 所包含的 commit
+       * 子级 package 会显示全部相关的 commit
+       * */ 
+      context.commitGroups = nextCommitGroups;
+      // context.commitGroups = others.length > 0 ? nextCommitGroups.concat([{
+      //   title: '👽 Other Effect',
+      //   typeGroups: _.flatten(sequenceArray(others, typeSequence, g => g.type))
+      // }]) : nextCommitGroups;
       
       /**
        * 由于 finalizeContext 这个配置会将  conventional-changelog-core 内置的 finalizeContext 覆盖掉，
@@ -182,8 +186,8 @@ function getWriterOpts (config) {
       // title 即为 groupBy 的值
       const {scopeSequence} = config;
       
-      let idxA = scopeSequence.indexOf(scopeSequenceMap[a.title] || a.title)
-      let idxB = scopeSequence.indexOf(scopeSequenceMap[b.title] || b.title)
+      let idxA = scopeSequenceIdx[a.title] || -1
+      let idxB = scopeSequenceIdx[b.title] || -1
       return idxA >= idxB ? 1 : -1;
     },
     commitsSort: config.commitsSort,
