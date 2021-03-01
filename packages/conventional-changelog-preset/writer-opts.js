@@ -143,7 +143,7 @@ function getWriterOpts (config) {
         if (!isSubPackage && currentScopeConfig && currentScopeConfig.mixin) {
           const mixinCommits = _.flatten(preTypeGroup).sort(functionify(config.commitsSort));
           nextCommitGroups.push({
-            title: scopeGroup.title, 
+            title: currentScopeConfig.title, 
             typeGroups: [{type: '', typeSection: '', commits: mixinCommits}]
           });
           return;
@@ -163,8 +163,8 @@ function getWriterOpts (config) {
         
         if (isSubPackage) {
           nextCommitGroups.push({title: scopeGroup.title, typeGroups});
-        } else if (scopeSequenceMap[scopeGroup.title]) {
-          nextCommitGroups.push({title: scopeSequenceMap[scopeGroup.title].title, typeGroups})
+        } else if (currentScopeConfig) {
+          nextCommitGroups.push({title: currentScopeConfig.title, typeGroups})
         }
       });
       
