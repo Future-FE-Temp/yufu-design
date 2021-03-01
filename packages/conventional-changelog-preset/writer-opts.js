@@ -110,7 +110,7 @@ function getWriterOpts (config) {
       const {typeSequence} = config;
       const isSubPackage = !_.get(context, 'packageData.workspaces');
       
-      // TODO: scopeGroup.title 如何处理 npm scope 的命名（@yffed/core） 需要提出一个公共的方法
+      // TODO: scopeGroup.title 如何处理 npm scope 的命名（@yffed/core） 需要提出一个公共的方法s
       if (isSubPackage) {
         const subPkgName = (_.get(context, 'packageData.name') || '').replace(/^@(\w|-)+\//, '');
         const subPkgCommitGroups = {
