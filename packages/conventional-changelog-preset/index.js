@@ -31,7 +31,11 @@ function mergeDefaultConfig(config) {
     ],
     commitsSort: ['subScope', 'subject'],
     scopeSequence: [
-      // { "scope": "@scope/name", "alias": "Display title" }
+      // { 
+      //   "scope": "@scope/name", 
+      //   "alias": "Display title", 
+      //   "mixin": false, // type 混合展示
+      // }
     ],
     typeSequence: ['feat', 'fix', 'refactor'], // 仅用来排序，是否显示取决于 types[n].hidden
     ...(config || {})

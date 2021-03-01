@@ -24,7 +24,7 @@
         "scopeSequence": [
           { "scope": "@yffed/core" },
           { "scope": "@yffed/icons" },
-          { "scope": "@yffed/docs", "alias": "📖 Documentation" }
+          { "scope": "@yffed/docs", "alias": "📖 Documentation", "mixin": true }
         ],
         "typeSequence": ["feat", "fix", "refactor"]
       }

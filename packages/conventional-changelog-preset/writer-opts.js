@@ -38,13 +38,15 @@ function getWriterOpts (config) {
   config.lernaPackage = new Project().isIndependent();
   const typesMap = config.types.reduce((map, c) => ({...map, [c.type]: c}), {});
   const scopeSequenceMap = {};
-  const scopeSequenceIdx = {};
   if (Array.isArray(config.scopeSequence)) {
     config.scopeSequence.forEach((c, idx) => {
       const s = _.get(c, 'scope') || '';
       if (_.isString(s)) {
-        scopeSequenceMap[s.replace(/^@(\w|-)+\//, '')] = _.get(c, 'alias') || s;
-        scopeSequenceIdx[s.replace(/^@(\w|-)+\//, '')] = idx;
+        scopeSequenceMap[s.replace(/^@(\w|-)+\//, '')] = {
+          title: _.get(c, 'alias') || s,
+          mixin: _.get(c, 'mixin') || false,
+          idx
+        };
       }
     });
   }
@@ -129,14 +131,24 @@ function getWriterOpts (config) {
 
       let nextCommitGroups = [];
       let otherCommitGroups = {};
-      console.log(context.commitGroups.map(g => g.title))
+      
       context.commitGroups.map((scopeGroup) => {
         const commits = scopeGroup.commits;
-        console.log(Object.keys(scopeGroup));
         const preTypeGroup = sequenceArray(commits, typeSequence, (commit) => commit.type);
-        const isDisplayScope = isSubPackage || scopeSequenceMap[scopeGroup.title];
+        const currentScopeConfig = scopeSequenceMap[scopeGroup.title];
+        const isDisplayScope = isSubPackage || currentScopeConfig;
         let typeGroups = []
         
+        // mixin 的 scope 不再有 type 区分
+        if (!isSubPackage && currentScopeConfig && currentScopeConfig.mixin) {
+          const mixinCommits = _.flatten(preTypeGroup).sort(functionify(config.commitsSort));
+          nextCommitGroups.push({
+            title: scopeGroup.title, 
+            typeGroups: [{type: '', typeSection: '', commits: mixinCommits}]
+          });
+          return;
+        }
+
         preTypeGroup.forEach(typeCommits => {
           const type = _.get(typeCommits, '[0].type') || '';
           const entry = typesMap[type] || {};
@@ -152,17 +164,18 @@ function getWriterOpts (config) {
         if (isSubPackage) {
           nextCommitGroups.push({title: scopeGroup.title, typeGroups});
         } else if (scopeSequenceMap[scopeGroup.title]) {
-          nextCommitGroups.push({title: scopeSequenceMap[scopeGroup.title], typeGroups})
+          nextCommitGroups.push({title: scopeSequenceMap[scopeGroup.title].title, typeGroups})
         }
       });
       
-      const others = Object.values(otherCommitGroups);
+      // const others = Object.values(otherCommitGroups);
       
       /**
        * NOTICE: 顶层 changelog 不显示 scopeSequence 以外的 scope 所包含的 commit
        * 子级 package 会显示全部相关的 commit
        * */ 
       context.commitGroups = nextCommitGroups;
+      
       // 如果想在 changelog 中显示 scopeSequence 以外 scope 的 commit 请打开以下注释
       // context.commitGroups = others.length > 0 ? nextCommitGroups.concat([{
       //   title: '👽 Other Effect',
@@ -186,10 +199,9 @@ function getWriterOpts (config) {
     groupBy: 'scope',
     commitGroupsSort(a, b) {
       // title 即为 groupBy 的值
-      const {scopeSequence} = config;
       
-      let idxA = scopeSequenceIdx[a.title] || -1
-      let idxB = scopeSequenceIdx[b.title] || -1
+      const idxA = scopeSequenceMap[a.title] ? scopeSequenceMap[a.title].idx : -1;
+      const idxB = scopeSequenceMap[b.title] ? scopeSequenceMap[b.title].idx : -1;
       return idxA >= idxB ? 1 : -1;
     },
     commitsSort: config.commitsSort,
