@@ -31,7 +31,7 @@ function mergeDefaultConfig(config) {
     ],
     commitsSort: ['subScope', 'subject'],
     scopeSequence: [],
-    typeSequence: ['feat', 'fix', 'refactor', 'docs'],
+    typeSequence: ['feat', 'fix', 'refactor'],
     ...(config || {})
   };
 }
