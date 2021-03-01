@@ -1,5 +1,5 @@
 /**
- * 提取 esm cjs 样式
+ * 提取 esm cjs 样式s
  * */
 const fs = require('fs');
 const path = require('path');
