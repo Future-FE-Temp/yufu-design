@@ -118,7 +118,6 @@ function getWriterOpts (config) {
       
       // sub package 仅显示自己的 commit, 不区分 scope
       if (isSubPackage) {
-        const subPkgName = (_.get(context, 'packageData.name') || '').replace(/^@(\w|-)+\//, '');
         const subPkgCommitGroups = {title: '', commits: []}; // title = '' 可以不显示 scope
         context.commitGroups.forEach(scopeGroup => {
           if (!Array.isArray(scopeGroup.commits)) return;
@@ -130,16 +129,16 @@ function getWriterOpts (config) {
 
       let nextCommitGroups = [];
       let otherCommitGroups = {};
+      console.log(context.commitGroups.map(g => g.title))
       context.commitGroups.map((scopeGroup) => {
         const commits = scopeGroup.commits;
-        console.log(commits);
+        console.log(Object.keys(scopeGroup));
         const preTypeGroup = sequenceArray(commits, typeSequence, (commit) => commit.type);
         const isDisplayScope = isSubPackage || scopeSequenceMap[scopeGroup.title];
         let typeGroups = []
         
         preTypeGroup.forEach(typeCommits => {
           const type = _.get(typeCommits, '[0].type') || '';
-          console.log(type);
           const entry = typesMap[type] || {};
           const sortedCommits = typeCommits.sort(functionify(config.commitsSort));
           const typeSection =  _.get(entry, 'section') || '';
