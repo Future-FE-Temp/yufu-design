@@ -132,12 +132,14 @@ function getWriterOpts (config) {
       let otherCommitGroups = {};
       context.commitGroups.map((scopeGroup) => {
         const commits = scopeGroup.commits;
+        console.log(commits);
         const preTypeGroup = sequenceArray(commits, typeSequence, (commit) => commit.type);
         const isDisplayScope = isSubPackage || scopeSequenceMap[scopeGroup.title];
         let typeGroups = []
         
         preTypeGroup.forEach(typeCommits => {
           const type = _.get(typeCommits, '[0].type') || '';
+          console.log(type);
           const entry = typesMap[type] || {};
           const sortedCommits = typeCommits.sort(functionify(config.commitsSort));
           const typeSection =  _.get(entry, 'section') || '';
@@ -162,6 +164,7 @@ function getWriterOpts (config) {
        * 子级 package 会显示全部相关的 commit
        * */ 
       context.commitGroups = nextCommitGroups;
+      // 如果想在 changelog 中显示 scopeSequence 以外 scope 的 commit 请打开以下注释
       // context.commitGroups = others.length > 0 ? nextCommitGroups.concat([{
       //   title: '👽 Other Effect',
       //   typeGroups: _.flatten(sequenceArray(others, typeSequence, g => g.type))
