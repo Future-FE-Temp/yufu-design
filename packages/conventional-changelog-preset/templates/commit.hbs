@@ -1,7 +1,7 @@
 {{~#if subScope}} 
 * {{subScope}}
 {{#each commits}}
-  * {{~#if subject}}{{~subject}}{{~else}}{{~header}}{{~/if}}
+  * {{~#if subject}}{{~subject}}{{~else}}{{~header}}{{~/if}} {{~> references root=@root}}
 {{/each}}
 {{~else}}
 {{~#each commits}}
@@ -10,7 +10,6 @@
 {{~else}}
   {{~header}}
 {{~/if}}
+{{~> references root=@root}}
 {{/each}}
 {{~/if}}
-
-{{~> references root=@root}}
