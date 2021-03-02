@@ -1,5 +1,5 @@
 /**
- * 组件库项目 commitizen 定制化
+ * 组件库项目 commitizen 定制化s
  * */
 
 const chalk = require('chalk');
