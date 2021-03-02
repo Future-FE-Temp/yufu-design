@@ -5,7 +5,7 @@ export interface IconProps {
   className?: string;
   /** 行内样式 */
   style?: React.CSSProperties;
-  /** 元素点击事件s */
+  /** 元素点击事件 */
   onClick?: (e: React.MouseEvent) => void;
 }
 
