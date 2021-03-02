@@ -1,11 +1,7 @@
 {{~#if subScope}} 
 * {{subScope}}
 {{#each commits}}
- * {{#if subject}}
-  {{~subject}}
-{{~else}}
-  {{~header}}
-{{~/if}}
+ * {{~#if subject}}{{~subject}}{{~else}}{{~header}}{{~/if}}
 {{/each}}
 {{~else}}
 {{~#each commits}}
