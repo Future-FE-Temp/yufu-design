@@ -9,7 +9,7 @@ interface IAlertProps {
   className?: string;
   /** 可以传入 children */
   children?: React.ReactChildren;
-  /** 组件类型 */
+  /** 组件类型s */
   type?: 'primary' | 'error' | 'default';
   /** 测试label */
   label?: React.ReactNode;
