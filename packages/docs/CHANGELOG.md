@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.0](https://github.com/Future-FE-Temp/yufu-design/compare/v4.0.1...v5.0.0) _(2021-03-02)_
+
+#### `✨ Features`
+
+* document project has feature ([30f5ca3](https://github.com/Future-FE-Temp/yufu-design/commit/30f5ca3fd49ca001c998a21171ef066a8fb3cf2a))
+
+#### `🐛 Bug Fixes`
+
+* test icons change effact docs ([#25](https://github.com/Future-FE-Temp/yufu-design/issues/25)) ([458ae31](https://github.com/Future-FE-Temp/yufu-design/commit/458ae31e7c2d9fa1391ca57f88bdf609f1907775)), closes [#12](https://github.com/Future-FE-Temp/yufu-design/issues/12) [#99](https://github.com/Future-FE-Temp/yufu-design/issues/99) [#88](https://github.com/Future-FE-Temp/yufu-design/issues/88)
+
+#### `🔨 Code Refactoring`
+
+* change button com title ([e1b5335](https://github.com/Future-FE-Temp/yufu-design/commit/e1b53357f90b66282a2e1baff00e2e119bbc9230))
+
+### 💥 BREAKING CHANGES
+
+* **icons:** icons change has breaking change ([458ae31](https://github.com/Future-FE-Temp/yufu-design/commit/458ae31e7c2d9fa1391ca57f88bdf609f1907775)), closes [#12](https://github.com/Future-FE-Temp/yufu-design/issues/12) [#99](https://github.com/Future-FE-Temp/yufu-design/issues/99) [#88](https://github.com/Future-FE-Temp/yufu-design/issues/88)
+* **icons:** has breaking change in core change ([458ae31](https://github.com/Future-FE-Temp/yufu-design/commit/458ae31e7c2d9fa1391ca57f88bdf609f1907775)), closes [#12](https://github.com/Future-FE-Temp/yufu-design/issues/12) [#99](https://github.com/Future-FE-Temp/yufu-design/issues/99) [#88](https://github.com/Future-FE-Temp/yufu-design/issues/88)
+
+
+
+
 ### [4.0.1](https://github.com/Future-FE-Temp/yufu-design/compare/v4.0.0...v4.0.1) _(2021-02-23)_
 
 **Note:** Version bump only for package @yffed/docs

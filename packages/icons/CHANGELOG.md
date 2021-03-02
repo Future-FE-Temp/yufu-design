@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.0](https://github.com/Future-FE-Temp/yufu-design/compare/v4.0.1...v5.0.0) _(2021-03-02)_
+
+#### `🐛 Bug Fixes`
+
+* BaseIcon
+  * fix some icons bug ([86ec388](https://github.com/Future-FE-Temp/yufu-design/commit/86ec388d2865819b8121020dc4e132ae671aaa45))
+
+
+
+
 ### [4.0.1](https://github.com/Future-FE-Temp/yufu-design/compare/v4.0.0...v4.0.1) _(2021-02-23)_
 
 **Note:** Version bump only for package @yffed/icons

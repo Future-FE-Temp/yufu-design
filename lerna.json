@@ -2,7 +2,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "4.0.1",
+  "version": "5.0.0",
   "npmClient": "yarn",
   "useWorkspaces": true,
   "command": {
@@ -22,11 +22,23 @@
       "changelogPreset": {
         "name": "@yffed/conventional-changelog-preset",
         "scopeSequence": [
-          { "scope": "@yffed/core" },
-          { "scope": "@yffed/icons" },
-          { "scope": "@yffed/docs", "alias": "📖 Documentation", "mixin": true }
+          {
+            "scope": "@yffed/core"
+          },
+          {
+            "scope": "@yffed/icons"
+          },
+          {
+            "scope": "@yffed/docs",
+            "alias": "📖 Documentation",
+            "mixin": true
+          }
         ],
-        "typeSequence": ["feat", "fix", "refactor"]
+        "typeSequence": [
+          "feat",
+          "fix",
+          "refactor"
+        ]
       }
     }
   }

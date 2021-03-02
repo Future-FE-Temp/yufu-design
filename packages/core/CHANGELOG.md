@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.0](https://github.com/Future-FE-Temp/yufu-design/compare/v4.0.1...v5.0.0) _(2021-03-02)_
+
+#### `✨ Features`
+
+* Alert
+  * change something has big effact ([b18c514](https://github.com/Future-FE-Temp/yufu-design/commit/b18c514023545a80879ac25740e7f0f42519c8b4))
+
+  * new feature for Alert Component ([9f2799a](https://github.com/Future-FE-Temp/yufu-design/commit/9f2799a1665a647ff3f5f3843deccd74a92cff05))
+
+
+#### `🐛 Bug Fixes`
+
+* Alert
+  * change something ([#24](https://github.com/Future-FE-Temp/yufu-design/issues/24)) ([6bbbe3d](https://github.com/Future-FE-Temp/yufu-design/commit/6bbbe3d186e951a17c2e7d3ebfb9799f5214c539)), closes [#34](https://github.com/Future-FE-Temp/yufu-design/issues/34) [#999](https://github.com/Future-FE-Temp/yufu-design/issues/999)
+
+* test icons change effact docs ([#25](https://github.com/Future-FE-Temp/yufu-design/issues/25)) ([458ae31](https://github.com/Future-FE-Temp/yufu-design/commit/458ae31e7c2d9fa1391ca57f88bdf609f1907775)), closes [#12](https://github.com/Future-FE-Temp/yufu-design/issues/12) [#99](https://github.com/Future-FE-Temp/yufu-design/issues/99) [#88](https://github.com/Future-FE-Temp/yufu-design/issues/88)
+
+### 💥 BREAKING CHANGES
+
+* **icons:** icons change has breaking change ([458ae31](https://github.com/Future-FE-Temp/yufu-design/commit/458ae31e7c2d9fa1391ca57f88bdf609f1907775)), closes [#12](https://github.com/Future-FE-Temp/yufu-design/issues/12) [#99](https://github.com/Future-FE-Temp/yufu-design/issues/99) [#88](https://github.com/Future-FE-Temp/yufu-design/issues/88)
+* **icons:** has breaking change in core change ([458ae31](https://github.com/Future-FE-Temp/yufu-design/commit/458ae31e7c2d9fa1391ca57f88bdf609f1907775)), closes [#12](https://github.com/Future-FE-Temp/yufu-design/issues/12) [#99](https://github.com/Future-FE-Temp/yufu-design/issues/99) [#88](https://github.com/Future-FE-Temp/yufu-design/issues/88)
+* **core:** Yes has Breaking change ([6bbbe3d](https://github.com/Future-FE-Temp/yufu-design/commit/6bbbe3d186e951a17c2e7d3ebfb9799f5214c539)), closes [#34](https://github.com/Future-FE-Temp/yufu-design/issues/34) [#999](https://github.com/Future-FE-Temp/yufu-design/issues/999)
+
+
+
+
 ### [4.0.1](https://github.com/Future-FE-Temp/yufu-design/compare/v4.0.0...v4.0.1) _(2021-02-23)_
 
 **Note:** Version bump only for package @yffed/core
