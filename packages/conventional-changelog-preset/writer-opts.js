@@ -216,8 +216,8 @@ function computeScopeSequenceMap (config) {
 
 function formatSubScope (config, commits) {
   const sortedCommits = commits.sort(functionify(config.commitsSort));
-  let subScopeCommits = [];
-  let recorder = {};
+  const subScopeCommits = [];
+  const recorder = {};
   sortedCommits.forEach(commit => {
     const subScope = commit.subScope || '';
     const idx = recorder[subScope]
@@ -225,7 +225,7 @@ function formatSubScope (config, commits) {
       subScopeCommits[idx].commits.push(commit);
     } else {
       const len = subScopeCommits.push({subScope, commits: [commit]});
-      recorder[subScope] = len;
+      recorder[subScope] = len - 1;
     }
   });
   return subScopeCommits;
