@@ -138,7 +138,7 @@ function getWriterOpts (config) {
         
         // mixin 的 scope 不再有 type 区分
         if (!isSubPackage && currentScopeConfig && currentScopeConfig.mixin) {
-          const subScopeGroups = formatSubScope(_.flatten(preTypeGroup));
+          const subScopeGroups = formatSubScope(config, _.flatten(preTypeGroup));
           nextCommitGroups.push({
             title: currentScopeConfig.title, 
             typeGroups: [{type: '', typeSection: '', subScopeGroups}]
@@ -150,7 +150,7 @@ function getWriterOpts (config) {
           if (isDisplayScope) {
             const type = _.get(typeCommits, '[0].type') || '';
             const entry = typesMap[type] || {};
-            const subScopeGroups = formatSubScope(typeCommits);
+            const subScopeGroups = formatSubScope(config, typeCommits);
             const typeSection =  _.get(entry, 'section') || '';
             typeGroups.push({ type, typeSection, subScopeGroups });
           }
