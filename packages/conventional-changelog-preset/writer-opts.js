@@ -37,19 +37,7 @@ module.exports = function (config) {
 function getWriterOpts (config) {
   config.lernaPackage = new Project().isIndependent();
   const typesMap = config.types.reduce((map, c) => ({...map, [c.type]: c}), {});
-  const scopeSequenceMap = {};
-  if (Array.isArray(config.scopeSequence)) {
-    config.scopeSequence.forEach((c, idx) => {
-      const s = _.get(c, 'scope') || '';
-      if (_.isString(s)) {
-        scopeSequenceMap[s.replace(/^@(\w|-)+\//, '')] = {
-          title: _.get(c, 'alias') || s,
-          mixin: _.get(c, 'mixin') || false,
-          idx
-        };
-      }
-    });
-  }
+  const scopeSequenceMap = computeScopeSequenceMap(config);
 
   return {
     // 给每一次 commit 做前期转换
@@ -115,10 +103,21 @@ function getWriterOpts (config) {
     },
     // 数据再传递给 handlebars 模板渲染前，最后一次处理机会
     finalizeContext(context, writerOpts, filteredCommits, keyCommit, originalCommits) {
+      // type commitGroups = Array<{
+      //   title: string,
+      //   typeGroups: Array<{
+      //     typeSection: string,
+      //     type: string,
+      //     subScopeGroups: Array<{
+      //       subScope: string,
+      //       commits: Array<Object>
+      //     }>
+      //   }>
+      // }>
       const {typeSequence} = config;
       const isSubPackage = !_.get(context, 'packageData.workspaces');
       
-      // sub package 仅显示自己的 commit, 不区分 scope
+      // sub package 仅显示自己的 commit, 不区分 scope , 这里需要预处理一下将所有 scopeGroup 合并
       if (isSubPackage) {
         const subPkgCommitGroups = {title: '', commits: []}; // title = '' 可以不显示 scope
         context.commitGroups.forEach(scopeGroup => {
@@ -130,8 +129,6 @@ function getWriterOpts (config) {
       }
 
       let nextCommitGroups = [];
-      let otherCommitGroups = {};
-      
       context.commitGroups.map((scopeGroup) => {
         const commits = scopeGroup.commits;
         const preTypeGroup = sequenceArray(commits, typeSequence, (commit) => commit.type);
@@ -141,23 +138,21 @@ function getWriterOpts (config) {
         
         // mixin 的 scope 不再有 type 区分
         if (!isSubPackage && currentScopeConfig && currentScopeConfig.mixin) {
-          const mixinCommits = _.flatten(preTypeGroup).sort(functionify(config.commitsSort));
+          const subScopeGroups = formatSubScope(_.flatten(preTypeGroup));
           nextCommitGroups.push({
             title: currentScopeConfig.title, 
-            typeGroups: [{type: '', typeSection: '', commits: mixinCommits}]
+            typeGroups: [{type: '', typeSection: '', subScopeGroups}]
           });
           return;
         }
 
         preTypeGroup.forEach(typeCommits => {
-          const type = _.get(typeCommits, '[0].type') || '';
-          const entry = typesMap[type] || {};
-          const sortedCommits = typeCommits.sort(functionify(config.commitsSort));
-          const typeSection =  _.get(entry, 'section') || '';
           if (isDisplayScope) {
-            typeGroups.push({ type, typeSection, commits: sortedCommits });
-          } else {
-            otherCommitGroups[type] = {type, typeSection, commits: (_.get(otherCommitGroups, `${type}.commits`) || []).concat(sortedCommits)}
+            const type = _.get(typeCommits, '[0].type') || '';
+            const entry = typesMap[type] || {};
+            const subScopeGroups = formatSubScope(typeCommits);
+            const typeSection =  _.get(entry, 'section') || '';
+            typeGroups.push({ type, typeSection, subScopeGroups });
           }
         })
         
@@ -168,19 +163,11 @@ function getWriterOpts (config) {
         }
       });
       
-      // const others = Object.values(otherCommitGroups);
-      
       /**
        * NOTICE: 顶层 changelog 不显示 scopeSequence 以外的 scope 所包含的 commit
        * 子级 package 会显示全部相关的 commit
        * */ 
       context.commitGroups = nextCommitGroups;
-      
-      // 如果想在 changelog 中显示 scopeSequence 以外 scope 的 commit 请打开以下注释
-      // context.commitGroups = others.length > 0 ? nextCommitGroups.concat([{
-      //   title: '👽 Other Effect',
-      //   typeGroups: _.flatten(sequenceArray(others, typeSequence, g => g.type))
-      // }]) : nextCommitGroups;
       
       /**
        * 由于 finalizeContext 这个配置会将  conventional-changelog-core 内置的 finalizeContext 覆盖掉，
@@ -208,4 +195,38 @@ function getWriterOpts (config) {
     noteGroupsSort: 'title',
     notesSort: compareFunc
   }
+}
+
+function computeScopeSequenceMap (config) {
+  const scopeSequenceMap = {};
+  if (Array.isArray(config.scopeSequence)) {
+    config.scopeSequence.forEach((c, idx) => {
+      const s = _.get(c, 'scope') || '';
+      if (_.isString(s)) {
+        scopeSequenceMap[s.replace(/^@(\w|-)+\//, '')] = {
+          title: _.get(c, 'alias') || s,
+          mixin: _.get(c, 'mixin') || false,
+          idx
+        };
+      }
+    });
+  }
+  return scopeSequenceMap;
+}
+
+function formatSubScope (config, commits) {
+  const sortedCommits = commits.sort(functionify(config.commitsSort));
+  let subScopeCommits = [];
+  let recorder = {};
+  sortedCommits.forEach(commit => {
+    const subScope = commit.subScope || '';
+    const idx = recorder[subScope]
+    if (_.isNumber(idx) && idx >= 0) {
+      subScopeCommits[idx].commits.push(commit);
+    } else {
+      const len = subScopeCommits.push({subScope, commits: [commit]});
+      recorder[subScope] = len;
+    }
+  });
+  return subScopeCommits;
 }

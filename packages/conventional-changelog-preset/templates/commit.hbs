@@ -1,8 +1,20 @@
-*{{#if subScope}} ***[{{subScope}}]***
-{{~/if}} {{#if subject}}
+{{~#if subScope}} 
+* {{subScope}}
+{{~#each commits}}
+ * {{#if subject}}
   {{~subject}}
 {{~else}}
   {{~header}}
+{{~/if}}
+{{/each}}
+{{~else}}
+{{~#each commits}}
+* {{#if subject}}
+  {{~subject}}
+{{~else}}
+  {{~header}}
+{{~/if}}
+{{/each}}
 {{~/if}}
 
 {{~> references root=@root}}
