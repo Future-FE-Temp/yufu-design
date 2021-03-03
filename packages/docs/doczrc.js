@@ -4,7 +4,7 @@ export default {
    */
   files: "**/*.{md,markdown,mdx}",
   /**
-   * 排除哪些文件
+   * 排除哪些文件s
    */
   ignore: ["README.md", "../core/node_modules", "../icons/node_modules"],
   /**
