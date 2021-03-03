@@ -3,7 +3,7 @@ import '../style/icon.less';
 export interface IconProps {
   /** 元素className */
   className?: string;
-  /** 行内样式s */
+  /** 行内样式sa */
   style?: React.CSSProperties;
   /** 元素点击事件 */
   onClick?: (e: React.MouseEvent) => void;
