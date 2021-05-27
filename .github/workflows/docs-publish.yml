@@ -54,4 +54,4 @@ jobs:
           destination_dir: docs
           publish_branch: gh-pages
           keep_files: true
-          full_commit_message: ${{ github.event.head_commit.message }}
+          full_commit_message: Publish docs manually with github-actions[bot]
