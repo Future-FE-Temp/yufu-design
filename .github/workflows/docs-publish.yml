@@ -1,6 +1,6 @@
 # This workflow will publish docs to GitHub Pages
 
-name: Publish Docs(手动发布)
+name: Publish Docs(手动发布文档)
 
 on:
   workflow_dispatch:
