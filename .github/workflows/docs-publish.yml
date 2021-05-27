@@ -26,6 +26,7 @@ jobs:
         run: yarn install --use-workspaces
 
   publish:
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
