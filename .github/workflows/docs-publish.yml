@@ -54,6 +54,6 @@ jobs:
           destination_dir: docs
           publish_branch: gh-pages
           keep_files: true
-          full_commit_message: Publish docs manually with github-actions[bot]
+          full_commit_message: Publish docs manually by ${{ github.actor }}
           user_name: github-actions[bot]
           user_email: github-actions[bot]@users.noreply.github.com
