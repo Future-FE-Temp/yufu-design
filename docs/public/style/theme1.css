@@ -1,0 +1,16 @@
+.button {
+  padding: 0 18px;
+  background-color: #fefefe;
+}
+
+.button-status {
+  color: #4fbdd1;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
+}
+.less-test-wrapper {
+  width: 100px;
+  height: 100px;
+  background-color: #4fbdd1;
+}
