@@ -31,59 +31,59 @@ jobs:
         if: steps.yarn_cache.outputs.cache-hit != 'true'
         run: yarn install --use-workspaces
 
-#   test:
-#     needs: [setup]
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: restore node_modules
-#         uses: actions/cache@v2
-#         with:
-#           path: '**/node_modules'
-#           key: modules-${{ hashFiles('**/yarn.lock') }}
-#           restore-keys: |
-#             modules-${{ hashFiles('**/yarn.lock') }}
-#             modules-
-#       - name: Unit Test
-#         run: yarn lerna run test:all --stream
+  test:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: restore node_modules
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            modules-${{ hashFiles('**/yarn.lock') }}
+            modules-
+      - name: Unit Test
+        run: yarn lerna run test:all --stream
 
-#   publish:
-#     needs: [setup, test]
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#         with:
-#           persist-credentials: false
-#           fetch-depth: "0"
-#       - name: restore node_modules
-#         uses: actions/cache@v2
-#         with:
-#           path: '**/node_modules'
-#           key: modules-${{ hashFiles('**/yarn.lock') }}
-#           restore-keys: |
-#             modules-${{ hashFiles('**/yarn.lock') }}
-#             modules-
-#       - name: Git Identity
-#         run: |
-#           git config --global user.name 'github-actions[bot]'
-#           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-#           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
-#       - name: build
-#         run: yarn lerna:build
-#       - name: publish
-#         run: yarn lerna:publish --yes --legacy-auth ${NPM_SECRET} --message "chore(release):publish %v" --create-release github ${{ github.event.inputs.parameter_for_publish }} ${{ github.event.inputs.version }}
+  publish:
+    needs: [setup, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: "0"
+      - name: restore node_modules
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            modules-${{ hashFiles('**/yarn.lock') }}
+            modules-
+      - name: Git Identity
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
+      - name: build
+        run: yarn lerna:build
+      - name: publish
+        run: yarn lerna:publish --yes --legacy-auth ${NPM_SECRET} --message "chore(release):publish %v" --create-release github ${{ github.event.inputs.parameter_for_publish }} ${{ github.event.inputs.version }}
 
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
-#           GH_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
-#           NODE_AUTH_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
-#           NPM_SECRET: ${{ secrets.NPM_SECRET }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
+          GH_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PUSH_TOKERN }}
+          NPM_SECRET: ${{ secrets.NPM_SECRET }}
           
   docs-publish:
     if: ${{ github.ref == 'refs/heads/main' }}
-#     needs: [publish]
+    needs: [publish]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
