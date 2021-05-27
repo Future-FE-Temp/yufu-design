@@ -111,6 +111,6 @@ jobs:
           destination_dir: docs
           publish_branch: gh-pages
           keep_files: true
-          full_commit_message: Publish docs with npm publish by ${{ github.actor }}
+          full_commit_message: Publish docs with npm publish v${{ github.event.inputs.version }} by ${{ github.actor }}
           user_name: github-actions[bot]
           user_email: github-actions[bot]@users.noreply.github.com
