@@ -55,3 +55,5 @@ jobs:
           publish_branch: gh-pages
           keep_files: true
           full_commit_message: Publish docs manually with github-actions[bot]
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
