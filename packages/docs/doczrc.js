@@ -1,4 +1,6 @@
 export default {
+  base: "/yufu-design",
+
   /**
    * 规定哪些文件会被当做文档文件，string | string[]
    */
