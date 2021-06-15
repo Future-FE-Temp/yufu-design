@@ -1,5 +1,5 @@
 /*
-  实际的组件实现s
+  实际的组件实现sss
 */
 import * as React from 'react';
 import './style/Alert.less';
