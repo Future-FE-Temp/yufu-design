@@ -1,11 +1,11 @@
-# `@yffed/core`
+# `@acme-ui/core`
 
 > TODO: description
 
 ## Usage
 
 ```
-const core = require('@yffed/core');
+const core = require('@acme-ui/core');
 
-// TODO: DEMONSTRATE APIssss
+// TODO: DEMONSTRATE API
 ```

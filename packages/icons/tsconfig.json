@@ -68,6 +68,7 @@
   },
   "include": [
     // 指定需要编译的文件
+    "typings",
     "src",
     "tests",
   ],
@@ -75,7 +76,6 @@
     // 指定不需要编译的文件
     "node_modules",
     "dist/**/*",
-    "scripts/*",
     "jest/**/*",
   ]
 }

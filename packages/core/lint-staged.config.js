@@ -19,7 +19,7 @@ module.exports = {
       ? 'yarn lint-staged:ts src/'
       : `yarn lint-staged:ts ${fileNames.join(' ')}`;
   },
-  '**/*.{ts,tsx}': () => 'yarn check:tsc', // 函数的方式用来避免，传递过来的 fileNames 进入 tsc 的类型检查中
+  '**/*.{ts,tsx}': () => 'yarn check:tsc',
   '**/*.{js,jsx,ts,tsx,css,less}': (fileNames) => {
     const fileStr = fileNames.join(' ');
     return fileStr.includes('jest/') || fileNames.length > 30

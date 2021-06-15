@@ -1,20 +1,21 @@
 {
-  "extends": [
-    "stylelint-config-standard",
-    "stylelint-config-prettier"
-  ],
-  "plugins": [
-    "stylelint-prettier",
-		"stylelint-order"
-	],
+  "extends": ["stylelint-config-standard", "stylelint-config-prettier"],
+  "plugins": ["stylelint-prettier", "stylelint-order"],
   "rules": {
     "prettier/prettier": true,
     "max-nesting-depth": 4,
     "order/order": [
-      ["custom-properties", "declarations"], {
+      ["custom-properties", "declarations"],
+      {
         "disableFix": true
       }
     ],
+    "selector-pseudo-class-no-unknown": [true, {
+      "ignorePseudoClasses": ["global"]
+    }],
+    "selector-pseudo-element-no-unknown": [true, {
+      "ignorePseudoElements": ["global"]
+    }],
     "order/properties-order": [
       "position",
       "top",
@@ -80,6 +81,7 @@
     "**/*.png",
     "**/*.svg",
     "**/*.jpg",
-    "**/*.jpeg"
+    "**/*.jpeg",
+    "dist/**/*"
   ]
 }

@@ -1,15 +1,23 @@
 /**
- * 入口文件s
+ * 入口文件
  * */
 
-// eslint-disable-next-line import/prefer-default-export
-export { default as Alert } from './components/Alert';
+import './styles/cover/index.less';
+
+export { default as Pagination } from './components/Pagination';
+export type { PaginationProps } from './components/Pagination';
+
 export { default as Button } from './components/Button';
-export { default as ClassCom } from './components/ClassCom';
-export { default as FuncCom } from './components/FuncCom';
-export { default as FuncComWithRef } from './components/FuncComWithRef';
-export { default as FuncComMemo } from './components/FuncComMemo';
-export { default as PromiseButton } from './components/PromiseButton';
-export { default as ImageTest } from './components/ImageTest';
-export { default as TestButton } from './components/TestButton';
-export { default as ButtonFn } from './components/ButtonFn';
+export type { IButtonGroupProps, IButtonProps } from './components/Button';
+
+export { default as Switch } from './components/Switch';
+export type { SwitchProps } from './components/Switch';
+
+export { default as Radio } from './components/Radio';
+export type { IRadioProps, IRadioButtonProps, IRadioGroupProps } from './components/Radio';
+
+export { default as FormLabel } from './components/FormLabel';
+export type { FormLabelProps } from './components/FormLabel';
+
+export { default as FormGroup } from './components/FormGroup';
+export type { FormGroupProps } from './components/FormGroup';

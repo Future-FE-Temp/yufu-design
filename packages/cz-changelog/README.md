@@ -1,11 +1,11 @@
-# `@yffed/cz-changelog`
+# `@acme-ui/cz-changelog`
 
 > TODO: description
 
 ## Usage
 
 ```
-const czChangelog = require('@yffed/cz-changelog');
+const czChangelog = require('@acme-ui/cz-changelog');
 
-// TODO: DEMONSTRATE APIs
+// TODO: DEMONSTRATE API
 ```

@@ -1,9 +1,10 @@
-/*
-  组件的入口，负责最终输出内容的整合
-  具体实现组件代码在与目录同名的组件内实现 K
-*/
 import Button from './Button';
+import ButtonGroup from './ButtonGroup';
 
-export type { ButtonProps } from './Button';
+export type { IButtonProps } from './Button';
+
+export type { IButtonGroupProps } from './ButtonGroup';
+
+Button.Group = ButtonGroup;
 
 export default Button;

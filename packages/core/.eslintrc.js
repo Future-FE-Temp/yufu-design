@@ -18,8 +18,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     'prettier',
-    'prettier/react',
-    'prettier/@typescript-eslint',
   ],
   parserOptions: {
     project: './tsconfig.json',
@@ -32,10 +30,9 @@ module.exports = {
   globals: {
     React: true,
     ReactDOM: true,
-    _: true,
-    moment: true,
   },
   rules: {
+    'import/prefer-default-export': 0,
     // javascript
     'brace-style': [2, '1tbs', { allowSingleLine: true }],
     'block-spacing': [2, 'always'],
@@ -52,6 +49,8 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0, // 强制给 div span 等没有语义的标签加上 role 角色，（在有onClick 等事件的前提下）
     // react
     '@typescript-eslint/no-unused-expressions': 2, // 开启对短路求值和三元表达式的支持
+    '@typescript-eslint/no-explicit-any': 2, // 关闭对不能设置 any 类型的检查
+    '@typescript-eslint/explicit-module-boundary-types': 0, // 关闭对必须设置返回值类型的检查
     // '@typescript-eslint/explicit-module-boundary-types': 'off', // 关闭对函数必须有返回值的支持 docz
     'react/jsx-no-undef': [
       2,
@@ -82,6 +81,12 @@ module.exports = {
         fileInfoOptions: {
           withNodeModules: false,
         },
+      },
+    ],
+    'jsx-a11y/label-has-associated-control': [
+      'error',
+      {
+        assert: 'nesting',
       },
     ],
     ...(process.env.ESLINT_ENV === 'commit' ? commitRules : {}),

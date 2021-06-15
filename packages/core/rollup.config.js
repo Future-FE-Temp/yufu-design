@@ -1,6 +1,6 @@
 /**
  * rollup 配置
- * */ 
+ * */
 import * as path from 'path';
 import * as fs from 'fs';
 import resolve from '@rollup/plugin-node-resolve';
@@ -12,18 +12,33 @@ import eslint from '@rollup/plugin-eslint';
 import postcss from 'rollup-plugin-postcss';
 import {terser} from 'rollup-plugin-terser';
 import autoprefixer from 'autoprefixer';
+import comments from 'postcss-discard-comments';
 import url from 'postcss-url';
 
 const entryFile = 'src/index.ts';
 const BABEL_ENV = process.env.BABEL_ENV || 'umd';
 const extensions = ['.js', '.ts', '.tsx'];
-const globals = {react: 'React', 'react-dom': 'ReactDOM', 'lodash': '_'};
-const externalPkg = ['react', 'react-dom', 'lodash'];
-BABEL_ENV !== 'umd' && externalPkg.push('@babel/runtime');
+const globals = {react: 'React', 'react-dom': 'ReactDOM'};
+const externalPkg = ['react', 'react-dom'];
+BABEL_ENV !== 'umd' && externalPkg.push('@babel/runtime', 'lodash');
 const external = id => externalPkg.some(e => id.indexOf(e) === 0);
 const componentDir = 'src/components';
-const cModuleNames = fs.readdirSync(path.resolve(componentDir));
-const componentEntryFiles = cModuleNames.map((name) => /^[A-Z]\w*/.test(name) ? `${componentDir}/${name}/index.tsx` : undefined).filter(n => !!n);
+const componentEntryFiles = [];
+try {
+  const cModuleNames = fs.readdirSync(path.resolve(componentDir));
+  cModuleNames.forEach((name) => {
+    if (!/^[A-Z]\w*/.test(name)) return;
+    try {
+      fs.readFileSync(`${componentDir}/${name}/index.tsx`);
+      componentEntryFiles.push(`${componentDir}/${name}/index.tsx`);
+    } catch (error) {
+      try {
+        fs.readFileSync(`${componentDir}/${name}/index.ts`);
+        componentEntryFiles.push(`${componentDir}/${name}/index.ts`);
+      } catch (e) {}
+    }
+  });
+} catch (error) {}
 
 // 通用配置
 const commonPlugins = [
@@ -38,6 +53,7 @@ const commonPlugins = [
   }),
   // 全局变量替换
   replace({
+    preventAssignment: true, // https://github.com/rollup/plugins/tree/master/packages/replace
     exclude: 'node_modules/**',
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
     'process.env.BABEL_ENV': JSON.stringify(BABEL_ENV || 'umd'),
@@ -46,15 +62,19 @@ const commonPlugins = [
 ];
 
 const postcssConfig = {
-  plugins: [autoprefixer({env: BABEL_ENV}), url({ url: 'inline' })],
+  plugins: [
+    autoprefixer({env: BABEL_ENV}),
+    url({ url: 'inline' }),
+    comments({removeAll: true})
+  ],
   extract: true,
   extensions: ['.less', '.css'],
   use: {'less': {javascriptEnabled: true}}
 };
 
-const umdOutput = { 
+const umdOutput = {
   format: 'umd',
-  name: 'RollupUI',
+  name: 'acme',
   globals,
   assetFileNames: '[name].[ext]'
 };
@@ -72,19 +92,18 @@ export default () => {
     case 'umd':
       return [{
         input: entryFile,
-        output: {...umdOutput, file: 'dist/umd/yufud.development.js'},
+        output: {...umdOutput, file: 'dist/umd/acme-ui.development.js'},
         external,
         plugins: [postcss(postcssConfig), ...commonPlugins]
       }, {
         input: entryFile,
-        output: {...umdOutput, file: 'dist/umd/yufud.production.min.js', plugins: [terser()]},
+        output: {...umdOutput, file: 'dist/umd/acme-ui.production.min.js', plugins: [terser()]},
         external,
         plugins: [postcss({...postcssConfig, minimize: true}), ...commonPlugins]
       }];
     case 'esm':
       return {
         input: [entryFile, ...componentEntryFiles],
-        preserveModules: true, // rollup-plugin-styles 还是需要使用
         output: { ...esOutput, dir: 'dist/es', format: 'es'},
         external,
         plugins: [postcss(postcssConfig), ...commonPlugins]
@@ -92,12 +111,11 @@ export default () => {
     case 'cjs':
       return {
         input: [entryFile, ...componentEntryFiles],
-        preserveModules: true, // rollup-plugin-styles 还是需要使用
         output: { ...esOutput, dir: 'dist/cjs', format: 'cjs'},
         external,
         plugins: [postcss(postcssConfig), ...commonPlugins]
       };
     default:
-      return [];      
+      return [];
   }
 };
