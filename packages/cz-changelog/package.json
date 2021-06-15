@@ -1,6 +1,6 @@
 {
   "name": "@yffed/cz-changelog",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "description": "> TODO: description",
   "private": true,
   "author": "mjzhang1993 <mingjiazhang@yufuid.com>",
@@ -39,6 +39,5 @@
   },
   "peerDependencies": {
     "lerna": ">=3.0.0"
-  },
-  "devDependencies": {}
+  }
 }
