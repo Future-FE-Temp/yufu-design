@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [5.1.1-alpha.1](https://github.com/Future-FE-Temp/yufu-design/compare/v5.0.0...v5.1.1-alpha.1) _(2021-06-15)_
+
+**Note:** Version bump only for package @yffed/conventional-changelog-preset
+
+
+
+
+
 ## [5.0.0](https://github.com/Future-FE-Temp/yufu-design/compare/v4.0.1...v5.0.0) _(2021-03-02)_
 
 #### `✨ Features`
