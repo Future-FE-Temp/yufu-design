@@ -14,7 +14,7 @@ export interface IButtonProps {
   className?: string;
   children: React.ReactNode;
   /**
-   * 按钮形态 - 实心按钮、线框按钮、无底色按钮s
+   * 按钮形态 - 实心按钮、线框按钮、无底色按钮sas
    * @default contained
    */
   mode?: ButtonModeType;
