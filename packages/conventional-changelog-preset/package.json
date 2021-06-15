@@ -2,6 +2,7 @@
   "name": "@yffed/conventional-changelog-preset",
   "version": "5.0.0",
   "description": "> TODO: description",
+  "private": true,
   "author": "mjzhang1993 <mingjiazhang@yufuid.com>",
   "homepage": "https://github.com/Future-FE-Temp/yufu-design#readme",
   "license": "MIT",
