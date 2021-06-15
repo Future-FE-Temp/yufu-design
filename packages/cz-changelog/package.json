@@ -1,6 +1,6 @@
 {
   "name": "@yffed/cz-changelog",
-  "version": "5.0.0",
+  "version": "5.1.0-alpha.0",
   "description": "> TODO: description",
   "author": "mjzhang1993 <mingjiazhang@yufuid.com>",
   "homepage": "https://github.com/Future-FE-Temp/yufu-design#readme",
@@ -38,6 +38,5 @@
   },
   "peerDependencies": {
     "lerna": ">=3.0.0"
-  },
-  "devDependencies": {}
+  }
 }
