@@ -1,6 +1,6 @@
 {
   "name": "@yffed/docs",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "description": "组件库文档",
   "private": true,
   "author": "mjzhang1993 <mingjiazhang@yufuid.com>",
@@ -99,8 +99,8 @@
     "@babel/runtime": "^7.12.0",
     "@hot-loader/react-dom": "^17.0.1",
     "@mdx-js/react": "^1.6.22",
-    "@yffed/core": "^5.1.0",
-    "@yffed/icons": "^5.1.0",
+    "@yffed/core": "^5.2.0",
+    "@yffed/icons": "^5.2.0",
     "capitalize": "^2.0.3",
     "copy-text-to-clipboard": "^3.0.1",
     "core-js": "^3.14.0",
