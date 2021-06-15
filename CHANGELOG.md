@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [5.1.1-alpha.0](https://github.com/Future-FE-Temp/yufu-design/compare/v5.1.0-alpha.0...v5.1.1-alpha.0) _(2021-06-15)_
+
+> ### _@yffed/core_
+
+#### `🐛 Bug Fixes`
+
+* Button
+  * change ([986a900](https://github.com/Future-FE-Temp/yufu-design/commit/986a900d9623ae864975a615915f8e3118c20aca))
+
+
+
+
 ## [5.1.0-alpha.0](https://github.com/Future-FE-Temp/yufu-design/compare/v5.0.0...v5.1.0-alpha.0) _(2021-06-15)_
 
 > ### _@yffed/core_
